@@ -9,7 +9,7 @@ page.HTMLrequire(buildTag.css(__dirname + "/static/main.css"))
 $.title = "Fullstack-ERP Developer - Nguyễn Thuận Thành <thanhntmany@gmail.com>"
 $.body = new StringAr(`<div>
     <div>Tools</div>
-    <div>Personal Projects</div>
+    <div do-active="${__dirname + "/test-active.mjs"}">Personal Projects</div>
     <div>Blogs</div>
     <div>Tools</div>
     <div>profile</div>
