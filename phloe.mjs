@@ -44,11 +44,10 @@ if (typeof window !== "undefined") {
  function aD(d) { import(d.getAttribute(da)).then(aD_.bind(d)).catch(console.error).finally(() => d.removeAttribute(da)) }
  function aNL(nl) { nl.forEach(aD); return nl }
  function aDT(d) { aNL(d.querySelectorAll(daQ)); return d }
-
  W.addEventListener("load", function () { aDT(doc) })
  W.phloemjs = M
  Object.assign(SA.prototype, {
-  toDom: function () { wR(this.HTMLgetRequireList()); return aNL(NfS(this.toString())) },
+  toDom: function () { wR(this.HTMLgetRequireList()); const nl = NfS(this.toString()); nl.forEach(aDT); return nl },
   appendInto: function (p) { this.toDom().forEach(_a, p) },
   insertBefore: function (n) { this.toDom().forEach(_iB, n) },
  })
