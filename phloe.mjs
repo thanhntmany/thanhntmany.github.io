@@ -4,7 +4,7 @@
  * @author Thanh Nguyen Thuan <thanhntmany@gmail.com>
  */
 class StringAr {
- constructor(o, $) { if (o instanceof this.constructor) { this.r = o.r; this._ = o._; this.$ = $ || o.$ } else { this.r = new Set(); (this._ = String(o).split(pRe)).forEach(sa); this.$ = $ || {} } }
+ constructor(o, $) { if (o instanceof this.constructor) { this.r = o.r; this._ = o._; this.$ = Object.assign({}, o.$, $)} else { this.r = new Set(); (this._ = String(o).split(pRe)).forEach(sa); this.$ = $ || {} } }
  HTMLrequire() { [...arguments].flat(Infinity).filter(SnhE, this.r).forEach(SaE, this.r = new Set(this.r)); return this }
  _r(S) { S.add(this.r); Object.values(this.$).forEach(_r, S) }
  HTMLgetRequireList(L, L1) { var l1 = (L1 || (L1 = new Set())).size; this._r(L1); if ((l1 -= L1.size) < 0) { var l = (L || (L = new Set())).size;[...L1].slice(l1).forEach(SSaE, L); if ((l -= L.size) < 0) return [...L].slice(l) } return [] }
@@ -45,4 +45,5 @@ if (typeof window !== "undefined") {
   appendInto: function (p) { this.toDom().forEach(_a, p) },
   insertBefore: function (n) { this.toDom().forEach(_iB, n) },
  })
+//  #TODO: active Dom feature
 }
