@@ -4,7 +4,7 @@
  * @author Thanh Nguyen Thuan <thanhntmany@gmail.com>
  */
 class StringAr {
- constructor(o, $) { if (o instanceof this.constructor) { this.r = o.r; this._ = o._; this.$ = Object.assign({}, o.$, $)} else { this.r = new Set(); (this._ = String(o).split(pRe)).forEach(sa); this.$ = $ || {} } }
+ constructor(o, $) { if (o instanceof this.constructor) { this.r = o.r; this._ = o._; this.$ = Object.assign({}, o.$, $) } else { this.r = new Set(); (this._ = String(o).split(pRe)).forEach(sa); this.$ = $ || {} } }
  HTMLrequire() { [...arguments].flat(Infinity).filter(SnhE, this.r).forEach(SaE, this.r = new Set(this.r)); return this }
  _r(S) { S.add(this.r); Object.values(this.$).forEach(_r, S) }
  HTMLgetRequireList(L, L1) { var l1 = (L1 || (L1 = new Set())).size; this._r(L1); if ((l1 -= L1.size) < 0) { var l = (L || (L = new Set())).size;[...L1].slice(l1).forEach(SSaE, L); if ((l -= L.size) < 0) return [...L].slice(l) } return [] }
@@ -29,21 +29,27 @@ const pRe = /({{[\S]+?}})/g, SA = StringAr,
  pn = u => S + rl(R, u),
  dr = u => S + rl(R, dir(rs(u))),
  mu = u => "www" + pn(u),
- Hcss = [`<link rel="stylesheet" href="`, , `">`], Hjs = [`<script type="text/javascript" src="`, , `"></script>`], Hmjs = [`<script type="module" src="`, , `"></script>`],
- M = { StringAr, wwwDir: R, dir, pathname: pn, dirname: dr, resolve: rs, relative: rl, moduleIdFromUrl: mu, HTML: { buildTag: { css: u => { Hcss[1] = u; return Hcss.join(S0) }, js: u => { Hjs[1] = u; return Hjs.join(S0) }, mjs: u => { Hmjs[1] = u; return Hmjs.join(S0) } } } }
+ da = "do-active", Hcss = [`<link rel="stylesheet" href="`, , `">`], Hjs = [`<script type="text/javascript" src="`, , `"></script>`], Hmjs = [`<script type="module" src="`, , `"></script>`],
+ M = { StringAr, wwwDir: R, dir, pathname: pn, dirname: dr, resolve: rs, relative: rl, moduleIdFromUrl: mu, doActiveAttr: da, HTML: { buildTag: { css: u => { Hcss[1] = u; return Hcss.join(S0) }, js: u => { Hjs[1] = u; return Hjs.join(S0) }, mjs: u => { Hmjs[1] = u; return Hmjs.join(S0) } } } }
 export default M
 
 if (typeof window !== "undefined") {
  const W = window, doc = W.document, head = doc.head, iH = head.innerHTML, L = new Set(), L1 = new Set(), niiH = e => !iH.includes(e),
   _a = function (e) { this.append(e) }, _iB = function (e) { this.parentNode.insertBefore(e, this) },
-  _c = e => { const n = doc.createElement(e.nodeName), att = e.attributes; var a; for (a of att) n.setAttribute(a.name, a.value); e.childNodes.forEach(_a, n); return n }
+  _c = e => { const n = doc.createElement(e.nodeName), att = e.attributes; var a; for (a of att) n.setAttribute(a.name, a.value); e.childNodes.forEach(_a, n); return n },
+  daQ = `[${da}]`
  function NfS(s) { const T = doc.createElement("div"); T.innerHTML = s; return T.childNodes }
  function wR() { [...NfS([...arguments].flat(Infinity).filter(niiH).join(S0))].map(_c).forEach(_a, head) }
+ function aD_(m) { if (m.activeDom) m.activeDom(this) }
+ function aD(d) { import(d.getAttribute(da)).then(aD_.bind(d)).catch(console.error).finally(() => d.removeAttribute(da)) }
+ function aNL(nl) { nl.forEach(aD); return nl }
+ function aDT(d) { aNL(d.querySelectorAll(daQ)); return d }
+
+ W.addEventListener("load", function () { aDT(doc) })
  W.phloemjs = M
  Object.assign(SA.prototype, {
-  toDom: function () { wR(this.HTMLgetRequireList()); return NfS(this.toString()) },
+  toDom: function () { wR(this.HTMLgetRequireList()); return aNL(NfS(this.toString())) },
   appendInto: function (p) { this.toDom().forEach(_a, p) },
   insertBefore: function (n) { this.toDom().forEach(_iB, n) },
  })
-//  #TODO: active Dom feature
 }
