@@ -46,9 +46,5 @@ if (typeof window !== "undefined") {
  function aDT(d) { aNL(d.querySelectorAll(daQ)); return d }
  W.addEventListener("load", function () { aDT(doc) })
  W.phloemjs = M
- Object.assign(SA.prototype, {
-  toDom: function () { wR(this.HTMLgetRequireList()); const nl = NfS(this.toString()); nl.forEach(aDT); return nl },
-  appendInto: function (p) { this.toDom().forEach(_a, p) },
-  insertBefore: function (n) { this.toDom().forEach(_iB, n) },
- })
+ Object.assign(SA.prototype, { toDom: function () { wR(this.HTMLgetRequireList()); const nl = NfS(this.toString()); nl.forEach(aDT); return nl }, HTMLrequire: wR, nodesFromString: NfS, activeDomTree: aDT, appendInto: function (p) { this.toDom().forEach(_a, p) }, insertBefore: function (n) { this.toDom().forEach(_iB, n) } })
 }
