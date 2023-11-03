@@ -13,6 +13,7 @@ $.body = new StringAr(`<div>
     <div do-active="${__dirname + "/test-active.mjs"}">Personal Projects</div>
     <div>Blogs</div>
     <div>Tools</div>
+    <div>Notebook</div>
     <div id="abc">profile</div>
 </div>
 <div>
