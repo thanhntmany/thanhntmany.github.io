@@ -36,7 +36,7 @@ const langs = ["English", "Tiếng Việt", "中文", "Deutsch", "Français", "�
 
 const card = p => {
     const inner = `
-            <div class="card-top"><span class="card-path">${[p.year, p.type].filter(Boolean).join(" · ")}</span><span class="status live">completed</span></div>
+            <div class="card-top"><span class="card-path">${[p.year, p.type].filter(Boolean).join(" · ")}</span>${p.status ? `<span class="status ${p.status === "completed" ? "live" : ""}">${p.status}</span>` : ""}</div>
             <h3>${p.name}</h3>
             <p>${p.summary}</p>
             <div class="card-foot">${(p.stack || []).map(t => `<span class="tag">${t}</span>`).join("")}</div>${p.link ? `
@@ -199,13 +199,17 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <div class="section-head reveal">
         <div class="section-num"><b>03</b> / projects</div>
         <div>
-          <h2>Completed projects</h2>
-          <p class="section-sub">ERP websites, system optimization and solutions built for specific problems.</p>
+          <h2>Projects</h2>
+          <p class="section-sub">ERP platforms, web systems, microservices and IoT — built for specific problems. Client names are kept private.</p>
         </div>
       </div>
       <div class="section-body">
         ${projects.length ? `<div class="cards">
           ${projects.map(card).join("\n          ")}
+        </div>
+        <div class="updating reveal">
+          <p><b>More projects are being added.</b> Ask me about work similar to what you need.</p>
+          <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
         </div>` : `<div class="updating reveal">
           <p><b>This list is being updated.</b> Many completed projects are not published here yet — ask me about work similar to what you need.</p>
           <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
