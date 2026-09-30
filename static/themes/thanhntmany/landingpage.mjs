@@ -25,8 +25,8 @@ const icon = {
     clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
 }
 
-// Brand logo, inlined so it renders crisp with no extra request (source: static/logo.svg).
-const logo = `<svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><g fill="#fff"><path fill="#00f" d="M64 56a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8Z"/><path d="M29.402 4.5a3 3 0 0 1 5.196 0L49.3205 30a20 20 0 1 1-34.641 0Z"/><path fill="#00f" d="M31.134 5.5a1 1 0 0 1 1.732 0L47.5885 31a18 18 0 0 0-31.177 0Z"/><circle cx="32" cy="6" r="3"/><circle fill="#00f" cx="32" cy="6" r="1"/><circle cx="32" cy="40" r="20"/><circle fill="#00f" cx="32" cy="40" r="16"/><polygon points="32,39 41.526,33.5 32,31 22.474,33.5"/><polygon points="31.134,40.5 21.608,35 24.206,44.5 31.134,51.5"/><polygon points="32.866,40.5 32.866,51.5 39.794,44.5 42.392,35"/><circle cx="32" cy="22" r="6"/><circle cx="16.4115" cy="49" r="6"/><circle cx="47.5885" cy="49" r="6"/><g fill="#00f"><circle cx="32" cy="22" r="4"/><circle cx="16.4115" cy="49" r="4"/><circle cx="47.5885" cy="49" r="4"/></g></g></svg>`
+// Brand logo, served from its own vector file.
+const logo = `<img class="logo" src="${__dirname}/static/logo.svg" width="64" height="64" alt="">`
 
 // Renders the landing page in one language ("en" or "vi").
 export function render(lang) {
