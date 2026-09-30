@@ -45,16 +45,24 @@ const card = p => {
     return p.link ? `<a class="card reveal" href="${p.link}" target="_blank" rel="noopener">${inner}</a>` : `<div class="card reveal">${inner}</div>`
 }
 
-const stack = [
-    ["MASM", "RCA, application analysing"],
-    ["C / C++", "ESP32 IoT project cores, custom Linux-based OSes (Ubuntu, Android), tools"],
-    ["JavaScript", "Node.js — both web and application"],
-    ["Python", "data science, Django, Odoo, academic research"],
-    ["Go", "embedded systems"],
-    ["VBA", "especially VBA for Excel"],
-    ["PHP", "vBulletin, WordPress, Symfony"],
-    ["Java", "especially tools for processing PDFs"],
-    ["R", "processing data, academic research"],
+// Career path from the CV, without employer names.
+const timeline = [
+    ["Now", "ERP Fullstack Dev & IoT Engineer", "Building the C core of ESP32 IoT projects and customizing Linux-based operating systems such as Ubuntu and Android."],
+    ["2024 – now", "Project manager · Team lead", "Raised a specialized team to build a tailored LMS for a Korean customer on Odoo 17 and ExpressJS, with an architecture designed for load and growth."],
+    ["2023 – 2024", "Team lead · Freelance team", "Business management solutions for SME customers, including Odoo 16 integrated with ArcGIS for water supply and drainage systems."],
+    ["2021 – 2023", "Signals officer · Military service", "Wireless communication operations; maintained computer systems and information infrastructure with Microsoft SQL Server."],
+    ["2019 – 2021", "ERP · Fullstack developer", "Built microservices from scratch, designed automated document processing tools, trained and mentored newcomers."],
+    ["2018 – 2019", "Odoo ERP technical consultant", "Developed and maintained Accounting, Warehouse, CRM and Sales modules."],
+    ["2017 – 2019", "Bachelor", "University of Economics Ho Chi Minh City."],
+    ["2008", "First lines of code", "Started with Assembly (MASM32) and C for deep software analysis and RCA."],
+]
+
+const skills = [
+    ["Languages", ["JavaScript / Node.js", "Python", "C / C++", "PHP", "SQL (MySQL, MS SQL Server)", "HTML5 / CSS3", "Assembly (MASM)"]],
+    ["ERP & frameworks", ["Odoo 16 / 17", "Django", "ReactJS", "ExpressJS", "Socket.IO", "Symfony", "ArcGIS"]],
+    ["IoT & systems", ["ESP32", "Embedded C", "Custom Linux (Ubuntu, Android)", "Ubuntu administration"]],
+    ["DevOps", ["Docker", "AWS", "GitHub CI/CD", "CircleCI"]],
+    ["Design", ["Figma", "Illustrator", "Photoshop"]],
 ]
 
 // Applied before first paint so the saved theme never flashes.
@@ -124,6 +132,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
             <span class="service-num">A</span>
             <h3>IT Solution Consultant <span class="status live">free</span></h3>
             <p>Just inform me by any way if you need a solution for your business, issue, task, project or assignment.</p>
+            <ul class="chips" aria-label="Areas">${["ERP on Odoo", "Web systems & microservices", "LMS", "GIS integration", "ESP32 IoT", "Custom Linux"].map(a => `<li>${a}</li>`).join("")}</ul>
             <p class="service-ask">Might I help you?</p>
             <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Solution%20consulting">${icon.mail}Describe your problem</a>
           </div>
@@ -168,16 +177,18 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <div class="section-head reveal">
         <div class="section-num"><b>02</b> / about</div>
         <div>
-          <h2>Foundation and optimization mindset</h2>
-          <p class="section-sub">I began coding with MASM (an assembly language) at 10 years old, then delved into C and C++. Based on that, I have learned and used higher level programming languages. I have led a small team specializing in building business-ERP websites, optimizing systems and building solutions for specific problems.</p>
+          <h2>Technology that improves business and life</h2>
+          <p class="section-sub">Early exposure to assembly (MASM) at 10 years old gave me a foundation-and-optimization mindset. Since 2018 I have built ERP systems and microservices, led teams and built whole systems from scratch — now across ERP and IoT, on the way to becoming a solution architect.</p>
         </div>
       </div>
       <div class="section-body">
-        <div class="shelf reveal">
-          <h3>Languages <span>${String(stack.length).padStart(2, "0")}+</span></h3>
-          <ul class="stack">
-            ${stack.map(([l, u]) => `<li><b>${l}</b><small>${u}</small></li>`).join("\n            ")}
-          </ul>
+        <div class="about">
+          <ol class="timeline reveal">
+            ${timeline.map(([when, role, what]) => `<li><span class="tl-when">${when}</span><div><b>${role}</b><p>${what}</p></div></li>`).join("\n            ")}
+          </ol>
+          <div class="shelf skills reveal">
+            ${skills.map(([group, items]) => `<h3>${group}</h3><ul class="chips">${items.map(i => `<li>${i}</li>`).join("")}</ul>`).join("\n            ")}
+          </div>
         </div>
       </div>
     </div>
