@@ -1070,6 +1070,15 @@ p {
     padding: 20px;
   }
 
+  .stack li {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stack small {
+    text-align: left;
+  }
+
   .topbar .btn-sm span {
     display: none;
   }
