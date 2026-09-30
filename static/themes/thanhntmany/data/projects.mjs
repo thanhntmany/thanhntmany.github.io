@@ -18,17 +18,17 @@ export default [
         status: "ongoing",
         summary: {
             en: "End-to-end IoT systems: customizing Android and embedded Linux for the devices, plus the control system, Android apps and ESP32 firmware in C.",
-            vi: "Hệ thống IoT trọn gói: tuỳ biến Android và Linux nhúng cho thiết bị, cùng hệ thống điều khiển, ứng dụng Android và firmware ESP32 viết bằng C.",
+            vi: "Làm trọn gói hệ thống IoT: tuỳ biến Android và Linux nhúng cho thiết bị, cùng hệ thống điều khiển, app Android và firmware ESP32 viết bằng C.",
         },
         stack: ["Android OS", "Embedded Linux", "Kotlin", "C", "Control systems", "ESP32"],
     },
     {
-        name: { en: "Tailored LMS platform", vi: "Nền tảng LMS theo yêu cầu" },
+        name: { en: "Tailored LMS platform", vi: "Nền tảng LMS làm riêng" },
         year: { en: "2024 – now", vi: "2024 – nay" },
         type: "Project Manager · Team Lead",
         summary: {
             en: "A learning management system for a Korean client, delivered by a dedicated team on an architecture designed for higher load and new services. Custom Odoo 17 modules, widgets and integrations cover courses, college transcripts, payroll and payments, with ExpressJS APIs for customer support and static assets.",
-            vi: "Hệ thống quản lý học tập cho một khách hàng Hàn Quốc, do đội ngũ chuyên trách phát triển trên kiến trúc chịu tải cao và sẵn sàng mở rộng dịch vụ. Các module, widget và tích hợp Odoo 17 tuỳ biến cho khoá học, bảng điểm đại học, lương và thanh toán; API ExpressJS cho chăm sóc khách hàng và phân phối tài nguyên tĩnh.",
+            vi: "Hệ thống quản lý học tập cho một khách hàng Hàn Quốc, do đội mình tự lập và phát triển, kiến trúc được thiết kế để chịu tải cao và dễ thêm dịch vụ mới. Module, widget và tích hợp Odoo 17 làm riêng cho khoá học, bảng điểm, tính lương và thanh toán; API ExpressJS phục vụ chăm sóc khách hàng và tài nguyên tĩnh.",
         },
         stack: ["Odoo 17", "Python", "ExpressJS", "System architecture"],
     },
@@ -39,7 +39,7 @@ export default [
         status: "completed",
         summary: {
             en: "Water supply and drainage management built on Odoo 16 and integrated with the ArcGIS geospatial platform, delivered as part of business management solutions for SMEs.",
-            vi: "Hệ thống quản lý cấp thoát nước xây dựng trên Odoo 16, tích hợp nền tảng địa không gian ArcGIS, thuộc bộ giải pháp quản lý doanh nghiệp cho SME.",
+            vi: "Quản lý cấp thoát nước trên nền Odoo 16, tích hợp bản đồ ArcGIS, nằm trong bộ giải pháp quản lý cho doanh nghiệp vừa và nhỏ.",
         },
         stack: ["Odoo 16", "ArcGIS", "Python"],
     },
@@ -50,7 +50,7 @@ export default [
         status: "completed",
         summary: {
             en: "Microservices built from scratch and tools for automated document processing for an international company, alongside training and mentoring new team members.",
-            vi: "Microservices xây dựng từ đầu và công cụ xử lý tài liệu tự động cho một công ty quốc tế, đồng thời đào tạo và hướng dẫn thành viên mới.",
+            vi: "Dựng microservices từ đầu và làm công cụ xử lý tài liệu tự động cho một công ty nước ngoài, đồng thời kèm các bạn mới vào nhóm.",
         },
         stack: ["Node.js", "ExpressJS", "Socket.IO", "React", "Django", "Docker", "AWS", "CI/CD"],
     },
@@ -61,7 +61,7 @@ export default [
         status: "completed",
         summary: {
             en: "Accounting, warehouse, CRM and sales modules developed and maintained for an Odoo Gold Partner.",
-            vi: "Các module kế toán, kho, CRM và bán hàng được phát triển và bảo trì cho một Odoo Gold Partner.",
+            vi: "Phát triển và bảo trì các module kế toán, kho, CRM và bán hàng cho một Odoo Gold Partner.",
         },
         stack: ["Odoo", "Python", "JavaScript"],
     },
