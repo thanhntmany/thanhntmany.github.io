@@ -47,7 +47,7 @@ const card = p => {
 
 // Career path from the CV, without employer names.
 const timeline = [
-    ["Now", "ERP Fullstack Dev & IoT Engineer", "Building the C core of ESP32 IoT projects and customizing Linux-based operating systems such as Ubuntu and Android."],
+    ["Now", "ERP Fullstack Dev & IoT Engineer", "Mainly customizing Android and embedded Linux operating systems; also building control systems, Android apps and the C core of ESP32 IoT devices."],
     ["2024 – now", "Project manager · Team lead", "Raised a specialized team to build a tailored LMS for a Korean customer on Odoo 17 and ExpressJS, with an architecture designed for load and growth."],
     ["2023 – 2024", "Team lead · Freelance team", "Business management solutions for SME customers, including Odoo 16 integrated with ArcGIS for water supply and drainage systems."],
     ["2021 – 2023", "Signals officer · Military service", "Wireless communication operations; maintained computer systems and information infrastructure with Microsoft SQL Server."],
@@ -60,13 +60,13 @@ const timeline = [
 const skills = [
     ["Languages", ["JavaScript / Node.js", "Python", "C / C++", "PHP", "SQL (MySQL, MS SQL Server)", "HTML5 / CSS3", "Assembly (MASM)"]],
     ["ERP & frameworks", ["Odoo 16 / 17", "Django", "ReactJS", "ExpressJS", "Socket.IO", "Symfony", "ArcGIS"]],
-    ["IoT & systems", ["ESP32", "Embedded C", "Custom Linux (Ubuntu, Android)", "Ubuntu administration"]],
+    ["Embedded & IoT", ["Android OS customization", "Embedded Linux", "Android apps", "Control systems", "ESP32 / Embedded C", "Ubuntu administration"]],
     ["DevOps", ["Docker", "AWS", "GitHub CI/CD", "CircleCI"]],
     ["Design", ["Figma", "Illustrator", "Photoshop"]],
 ]
 
 // Applied before first paint so the saved theme never flashes.
-page.HTMLrequire(`<meta name="description" content="Need a solution for your business, issue, task, project or assignment? Free IT solution consulting and programming training by Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer: Odoo ERP, web systems, microservices and ESP32 IoT.">`)
+page.HTMLrequire(`<meta name="description" content="Need a solution for your business, issue, task, project or assignment? Free IT solution consulting and programming training by Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer: Odoo ERP, web systems, microservices, embedded Android/Linux and IoT.">`)
 page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
 page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
 page.HTMLrequire(`<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
@@ -97,7 +97,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <div>
         <span class="eyebrow"><span class="dot"></span>Free IT consulting · Free programming training</span>
         <h1>Might I <span class="accent">help you</span>?</h1>
-        <p class="lede">Just inform me by any way if you need a solution for your <b>business</b>, <b>issue</b>, <b>task</b>, <b>project</b> or <b>assignment</b>. I'm <b>Nguyễn Thuận Thành</b> — ERP Fullstack Dev &amp; IoT Engineer in Vietnam, building ERP systems, web platforms and IoT devices.</p>
+        <p class="lede">Just inform me by any way if you need a solution for your <b>business</b>, <b>issue</b>, <b>task</b>, <b>project</b> or <b>assignment</b>. I'm <b>Nguyễn Thuận Thành</b> — ERP Fullstack Dev &amp; IoT Engineer in Vietnam, building ERP systems, web platforms and embedded Android/Linux IoT systems.</p>
         <div class="actions">
           <a class="btn btn-primary" href="mailto:${EMAIL}">${icon.mail}Email me</a>
           <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
@@ -132,7 +132,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
             <span class="service-num">A</span>
             <h3>IT Solution Consultant <span class="status live">free</span></h3>
             <p>Just inform me by any way if you need a solution for your business, issue, task, project or assignment.</p>
-            <ul class="chips" aria-label="Areas">${["ERP on Odoo", "Web systems & microservices", "LMS", "GIS integration", "ESP32 IoT", "Custom Linux"].map(a => `<li>${a}</li>`).join("")}</ul>
+            <ul class="chips" aria-label="Areas">${["ERP on Odoo", "Web systems & microservices", "LMS", "GIS integration", "Embedded Android & Linux", "IoT & control systems"].map(a => `<li>${a}</li>`).join("")}</ul>
             <p class="service-ask">Might I help you?</p>
             <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Solution%20consulting">${icon.mail}Describe your problem</a>
           </div>

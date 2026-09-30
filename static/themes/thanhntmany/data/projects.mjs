@@ -12,11 +12,11 @@
 // },
 export default [
     {
-        name: "ESP32 IoT device cores",
+        name: "Embedded Android & Linux IoT systems",
         type: "IoT engineer",
         status: "ongoing",
-        summary: "Core firmware in C for IoT projects built on ESP32, together with customized Linux-based operating systems (Ubuntu, Android) for the devices around them.",
-        stack: ["C", "ESP32", "Linux", "Ubuntu", "Android"],
+        summary: "End-to-end IoT systems, mainly customizing Android and embedded Linux operating systems for the devices, plus the control system, Android apps and the C firmware core of ESP32 nodes.",
+        stack: ["Android OS", "Embedded Linux", "Android apps", "Control systems", "C", "ESP32"],
     },
     {
         name: "Tailored LMS platform",
