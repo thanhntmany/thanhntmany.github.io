@@ -84,7 +84,7 @@ export default {
 
     projects: {
         h2: "Projects",
-        sub: "ERP platforms, web systems, microservices and IoT, each built around a specific problem. Client names are kept confidential.",
+        sub: "ERP platforms, web systems, microservices and IoT, each built around a specific problem.",
         status: { completed: "completed", ongoing: "ongoing" },
         more: "<b>More projects are on the way.</b> Ask me about work similar to what you need.",
         empty: "<b>This list is being updated.</b> Many completed projects aren't listed yet — ask me about work similar to what you need.",

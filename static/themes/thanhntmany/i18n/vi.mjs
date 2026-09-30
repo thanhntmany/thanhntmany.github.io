@@ -84,7 +84,7 @@ export default {
 
     projects: {
         h2: "Dự án",
-        sub: "ERP, hệ thống web, microservices và IoT — dự án nào cũng bắt đầu từ một bài toán cụ thể. Tên khách hàng xin phép được giữ kín.",
+        sub: "ERP, hệ thống web, microservices và IoT — dự án nào cũng bắt đầu từ một bài toán cụ thể.",
         status: { completed: "đã xong", ongoing: "đang làm" },
         more: "<b>Còn nhiều dự án mình chưa kịp đưa lên.</b> Bạn cần làm thứ gì tương tự thì cứ hỏi mình.",
         empty: "<b>Danh sách này đang được cập nhật.</b> Nhiều dự án đã xong mình chưa kịp đưa lên — bạn cần gì tương tự thì cứ hỏi mình.",
