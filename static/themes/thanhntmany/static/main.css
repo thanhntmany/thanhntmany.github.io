@@ -445,6 +445,10 @@ p {
   font-size: 15px;
 }
 
+.cards + .updating {
+  margin-top: 16px;
+}
+
 .card-foot {
   display: flex;
   flex-wrap: wrap;
@@ -761,7 +765,8 @@ p {
   margin-top: auto;
 }
 
-.langs {
+.langs,
+.chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -770,7 +775,8 @@ p {
   list-style: none;
 }
 
-.langs li {
+.langs li,
+.chips li {
   padding: 4px 10px;
   border-radius: 999px;
   background: var(--bg-sunk);
@@ -853,23 +859,80 @@ p {
 
 /* about */
 
-.stack li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 4px 12px;
-  padding: 10px 0;
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
 }
 
-.stack b {
-  font: 600 14px/1.4 var(--mono);
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.stack small {
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 5px;
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 4px 16px;
+  padding: 0 0 22px 28px;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--ink-3);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.timeline li:first-child::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.tl-when {
   color: var(--ink-3);
-  font-size: 13px;
-  text-align: right;
+  font: 500 13px/1.8 var(--mono);
+}
+
+.timeline li:first-child .tl-when {
+  color: var(--accent);
+}
+
+.timeline b {
+  font-weight: 650;
+}
+
+.timeline p {
+  margin-top: 2px;
+  color: var(--ink-2);
+  font-size: 15px;
+}
+
+.skills h3 + .chips {
+  margin-bottom: 18px;
+}
+
+.skills .chips:last-child {
+  margin-bottom: 8px;
 }
 
 /* projects */
@@ -1047,6 +1110,10 @@ p {
   .reach {
     max-width: 520px;
   }
+
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 720px) {
@@ -1070,13 +1137,8 @@ p {
     padding: 20px;
   }
 
-  .stack li {
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .stack small {
-    text-align: left;
+  .timeline li {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .topbar .btn-sm span {
