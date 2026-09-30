@@ -16,44 +16,70 @@ const icon = {
     star: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5-4.9-4.6 6.6-.8z"/></svg>`,
     facebook: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.6 2 10.5 3.4 10.5 5.9V8H8v3h2.5v11H14V11h2.6l.4-3z"/></svg>`,
     x: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 2.5h3.1l-6.8 7.8 8 10.9h-6.3l-4.9-6.4-5.6 6.4H2.2l7.3-8.3L1.8 2.5h6.4l4.4 5.9zm-1.1 16.8h1.7L7.4 4.3H5.6z"/></svg>`,
+    phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>`,
+    clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
 }
 
-const STATUS = { stable: "live", wip: "", paused: "" }
-const card = (p, feature) => `<a class="card${feature ? " card-feature" : ""} reveal" href="${GH}/${p.repo}" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-path">thanhntmany/${p.repo}</span><span class="status ${STATUS[p.status]}">${p.status}</span></div>
+const EMAIL = "thanhntmany@gmail.com", PHONE = "+84 344 087 349", TEL = "+84344087349",
+    FB = "https://fb.com/thanhntmany", X = "https://twitter.com/Thanhnt_many"
+
+const channels = [
+    { icon: icon.mail, label: "Email", value: EMAIL, href: "mailto:" + EMAIL, copy: EMAIL },
+    { icon: icon.phone, label: "Phone", value: PHONE, href: "tel:" + TEL, copy: PHONE },
+    { icon: icon.facebook, label: "Facebook", value: "fb.com/thanhntmany", href: FB },
+    { icon: icon.x, label: "X", value: "@Thanhnt_many", href: X },
+]
+const channel = c => `<li><a href="${c.href}"${c.href.startsWith("http") ? ` target="_blank" rel="noopener"` : ""}>${c.icon}<span><small>${c.label}</small>${c.value}</span></a>${c.copy ? `<button class="icon-btn" type="button" aria-label="Copy ${c.label.toLowerCase()}" data-copy="${c.copy}" do-active="${__dirname + "/cpn/copy.mjs"}">${icon.copy}</button>` : ""}</li>`
+
+const langs = ["English", "Tiếng Việt", "中文", "Deutsch", "Français", "日本語", "한국어", "Русский"]
+
+// "Some public projects" from the GitHub profile README; repo is set only where a public repository exists.
+const STATUS = { Stable: "live", WIP: "", Pending: "" }
+const projects = [
+    { name: "TNT build system", status: "WIP", stack: "C, Cross platforms", repo: "tntbuild" },
+    { name: "Node server eco-system", status: "WIP", stack: "JS, Java, C, Cross platforms, Web3" },
+    { name: "Phloemjs web framework", status: "WIP", stack: "JS, C", repo: "phloemjs" },
+    { name: "Module-based web/app-system", status: "WIP", stack: "JS, C" },
+    { name: "do-it-later-js", status: "Stable", stack: "JS", repo: "do-it-later-js" },
+    { name: "rfc-diagram", status: "Stable", stack: "CSV", repo: "rfc-diagram" },
+    { name: "rfcs-graph-data-processer", status: "Stable", stack: "HTML, JS" },
+    { name: "directory-as-set-js", status: "Stable", stack: "JS", repo: "directory-as-set-js" },
+    { name: "directory-as-set-js (C version)", status: "Pending", stack: "C, Cross platforms" },
+]
+const row = p => {
+    const cells = `<span class="ledger-name">${p.name}</span><span class="status ${STATUS[p.status]}">${p.status}</span><span class="ledger-stack">${p.stack}</span><span class="ledger-go">${p.repo ? icon.arrow : ""}</span>`
+    return p.repo ? `<li><a href="${GH}/${p.repo}" target="_blank" rel="noopener">${cells}</a></li>` : `<li><div>${cells}</div></li>`
+}
+
+// Other public repositories on github.com/thanhntmany
+const more = [
+    { repo: "esp32-oscilloscope", name: "ESP32 Oscilloscope", tags: ["C", "ESP-IDF", "IoT"], desc: "A 2-channel oscilloscope on an ESP32 that serves its waveform display and controls to any browser over its own Wi-Fi." },
+    { repo: "rounding-zoom", name: "Rounding Zoom", tags: ["TypeScript", "VS Code"], desc: "A VS Code extension with font-size based, integer-rounded zoom so text stays sharp." },
+    { repo: "esp-flasher", name: "esp-flasher", tags: ["C", "IoT"], desc: "A standalone tool and C library for flashing ESP devices without esptool." },
+    { repo: "pn532-js", name: "pn532-js", tags: ["JavaScript", "RFID"], desc: "A library to handle the PN532 RFID reader." },
+]
+const card = p => `<a class="card reveal" href="${GH}/${p.repo}" target="_blank" rel="noopener">
+            <span class="card-path">thanhntmany/${p.repo}</span>
             <h3>${p.name}</h3>
             <p>${p.desc}</p>
-            <div class="card-foot">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}${p.stars ? `<span class="stars">${icon.star}${p.stars}</span>` : ""}</div>
+            <div class="card-foot">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
             <span class="card-arrow">${icon.arrow}</span>
           </a>`
 
-// Sourced from the public repositories at github.com/thanhntmany
-const projects = [
-    { repo: "rfc-diagram", name: "RFC Diagram", status: "stable", stars: 1, tags: ["IETF RFCs", "Graph", "SVG"], desc: "An arranged diagram of the RFC series for tracking standards more easily — which documents update or obsolete which, rendered as one large graph in light and dark versions." },
-    { repo: "tntbuild", name: "tntbuild", status: "wip", stars: 2, tags: ["C", "Cross-platform"], desc: "The TNT build system: targets, dependencies, related files and build or on-change scripts are declared as tags straight from the shell." },
-    { repo: "esp32-oscilloscope", name: "ESP32 Oscilloscope", status: "wip", tags: ["C", "ESP-IDF", "IoT"], desc: "A 2-channel oscilloscope on an ESP32 NodeMCU-32. The board runs its own Wi-Fi access point and serves the waveform display and every control to a browser — no screen, no app." },
-    { repo: "phloemjs", name: "Phloemjs", status: "wip", tags: ["JavaScript", "C", "Web framework"], desc: "A web framework built on what the platform already provides — browsers, devices, network topology. This website is built with it." },
-    { repo: "rounding-zoom", name: "Rounding Zoom", status: "wip", tags: ["TypeScript", "VS Code"], desc: "A VS Code extension that replaces the built-in zoom with a font-size based, integer-rounded zoom, so text stays sharp at every zoom level." },
-    { repo: "esp-flasher", name: "esp-flasher", status: "paused", tags: ["C", "IoT"], desc: "A standalone tool and C library for flashing ESP devices without esptool, including mass flashing. Postponed until the next stable version." },
-    { repo: "pn532-js", name: "pn532-js", status: "wip", tags: ["JavaScript", "RFID"], desc: "A library to handle the NXP PN532 RFID/NFC reader." },
-    { repo: "directory-as-set-js", name: "directory-as-set.js", status: "stable", stars: 1, tags: ["Node.js", "CLI"], desc: "The das command line tool for working with directories as sets — can run straight from GitHub without installing." },
-    { repo: "do-it-later-js", name: "do-it-later-js", status: "stable", tags: ["JavaScript", "Queue"], desc: "A small queue library for deferring work until later." },
-]
-
 const stack = [
-    ["MASM", "root-cause analysis, application analysis"],
-    ["C / C++", "applications, tools, algorithm problems"],
-    ["JavaScript", "web and applications on Node.js"],
-    ["Python", "data science, Django, Odoo, research"],
+    ["MASM", "RCA, application analysing"],
+    ["C / C++", "applications, tools, LeetCode algorithm problems"],
+    ["JavaScript", "Node.js — both web and application"],
+    ["Python", "data science, Django, Odoo, academic research"],
     ["Go", "embedded systems"],
-    ["VBA", "Excel automation"],
+    ["VBA", "especially VBA for Excel"],
     ["PHP", "vBulletin, WordPress, Symfony"],
-    ["Java", "tools for processing PDFs"],
-    ["R", "data processing, academic research"],
+    ["Java", "especially tools for processing PDFs"],
+    ["R", "processing data, academic research"],
 ]
 
 // Applied before first paint so the saved theme never flashes.
-page.HTMLrequire(`<meta name="description" content="Nguyễn Thuận Thành (thanhntmany) — ERP, IoT and fullstack developer from Vietnam. Projects, notebook and contact.">`)
+page.HTMLrequire(`<meta name="description" content="Need a solution for your business, issue, task, project or assignment? Free IT solution consulting and programming training by Nguyễn Thuận Thành — ERP · IoT · Fullstack developer.">`)
 page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
 page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
 page.HTMLrequire(`<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
@@ -61,18 +87,19 @@ page.HTMLrequire(`<link rel="preconnect" href="https://fonts.googleapis.com"><li
 page.HTMLrequire(buildTag.css("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"))
 page.HTMLrequire(buildTag.css(__dirname + "/static/main.css"))
 page.HTMLrequire(buildTag.mjs(__dirname + "/main.mjs"))
-$.title = "Nguyễn Thuận Thành — ERP · IoT · Fullstack Developer"
+$.title = "Nguyễn Thuận Thành — Free IT solution consulting & programming training"
 $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar" do-active="${__dirname + "/cpn/topbar.mjs"}">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="thanhntmany — home"><span class="brand-mark">TN</span><span><span class="brand-tilde">~/</span>thanhntmany</span></a>
     <nav class="nav" aria-label="Sections">
+      <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#notebook">Notebook</a>
-      <a href="#contact">Contact</a>
     </nav>
+    <a class="btn btn-primary btn-sm" href="#contact">${icon.mail}<span>Get in touch</span></a>
     <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode" do-active="${__dirname + "/cpn/theme-toggle.mjs"}">${icon.moon}${icon.sun}</button>
   </div>
 </header>
@@ -81,26 +108,78 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="hero" id="top">
     <div class="wrap">
       <div>
-        <span class="eyebrow"><span class="dot"></span>ERP · IoT · Fullstack Developer</span>
-        <h1>Nguyễn<br>Thuận <span class="accent">Thành</span>.</h1>
-        <p class="lede">I began coding with MASM assembly at ten, then delved into C and C++ — so I work with a foundation-and-optimization mindset. I lead a small team building business ERP websites, optimizing systems and building solutions for specific problems.</p>
+        <span class="eyebrow"><span class="dot"></span>Free IT consulting · Free programming training</span>
+        <h1>Might I <span class="accent">help you</span>?</h1>
+        <p class="lede">Just inform me by any way if you need a solution for your <b>business</b>, <b>issue</b>, <b>task</b>, <b>project</b> or <b>assignment</b>. I'm <b>Nguyễn Thuận Thành</b> — an ERP · IoT · Fullstack developer in Vietnam.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="mailto:thanhntmany@gmail.com">${icon.mail}Get in touch</a>
-          <a class="btn" href="${GH}" target="_blank" rel="noopener">${icon.github}GitHub</a>
+          <a class="btn btn-primary" href="mailto:${EMAIL}">${icon.mail}Email me</a>
+          <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
         </div>
       </div>
 
-      <div class="term" aria-label="About me in a terminal">
-        <div class="term-bar"><i></i><i></i><i></i><span>thanhntmany.github.io</span></div>
-        <div class="term-body"><pre><span class="p">$</span> whoami
-thanhntmany <span class="c"># Vietnam</span>
-<span class="p">$</span> cat roles
-IT         ERP · IoT · Fullstack
-Marketing  Account Planner
-<span class="p">$</span> ls ~/work
-<a href="#projects">tntbuild/</a>  <a href="#projects">phloemjs/</a>
-<a href="#projects">rfc-diagram/</a>  <a href="#projects">esp32-oscilloscope/</a>
-<span class="p">$</span> <span class="cursor"></span></pre></div>
+      <aside class="reach" id="contact-card" aria-label="Contact">
+        <div class="reach-head">
+          <span class="brand-mark">TN</span>
+          <div><b>Thanh Nguyen Thuan</b><small>ERP · IoT · Fullstack Developer</small></div>
+        </div>
+        <ul class="channels">
+          ${channels.map(channel).join("\n          ")}
+        </ul>
+        <p class="reach-note">${icon.clock}<span>I check my mail and message inbox every day after <b>20:30 (GMT+7)</b>.</span></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="section-num"><b>01</b> / services</div>
+        <div>
+          <h2>How I can help — for free</h2>
+          <p class="section-sub">Everything you need is a specific solution. Don't be shy!</p>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="services">
+          <div class="service reveal">
+            <span class="service-num">A</span>
+            <h3>IT Solution Consultant <span class="status live">free</span></h3>
+            <p>Just inform me by any way if you need a solution for your business, issue, task, project or assignment.</p>
+            <p class="service-ask">Might I help you?</p>
+            <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Solution%20consulting">${icon.mail}Describe your problem</a>
+          </div>
+          <div class="service reveal">
+            <span class="service-num">B</span>
+            <h3>Programming training / supporter <span class="status live">free</span></h3>
+            <p>For my teammates, my friends and the curious ones. Every day after 20:30 (GMT+7) I check the mail and message inbox and start training classes. Feel free to inbox me.</p>
+            <ul class="langs" aria-label="Languages I can reply in">${langs.map(l => `<li>${l}</li>`).join("")}</ul>
+            <p class="service-fine">Or try using any translator.</p>
+            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}Message me</a>
+          </div>
+        </div>
+
+        <div class="focus reveal">
+          <h3>Pls. focus on the problem</h3>
+          <div class="chats">
+            <div class="chat chat-do">
+              <p class="chat-label">✅ Do</p>
+              <p class="msg you">Hi. I'm confused about … and the problem is …</p>
+              <p class="wait">waiting…</p>
+              <p class="msg me">I reply</p>
+            </div>
+            <div class="chat chat-dont">
+              <p class="chat-label">❌ Don't</p>
+              <p class="msg you">Hi.</p>
+              <p class="wait">waiting…</p>
+              <p class="msg me">I greet back</p>
+              <p class="wait">waiting…</p>
+              <p class="msg you">The problem is that …</p>
+              <p class="wait">waiting…</p>
+              <p class="msg me">I reply</p>
+              <p class="wait">waiting… waiting… waiting…</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -108,37 +187,18 @@ Marketing  Account Planner
   <section class="section" id="about">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>01</b> / about</div>
+        <div class="section-num"><b>02</b> / about</div>
         <div>
-          <h2>Foundation first, then optimize</h2>
-          <p class="section-sub">Starting from assembly shaped how I approach everything since: understand the layer underneath, then pick the right higher-level tool for the job.</p>
+          <h2>Foundation and optimization mindset</h2>
+          <p class="section-sub">I began coding with MASM (an assembly language) at 10 years old, then delved into C and C++. Based on that, I have learned and used higher level programming languages. I have led a small team specializing in building business-ERP websites, optimizing systems and building solutions for specific problems.</p>
         </div>
       </div>
       <div class="section-body">
-        <div class="about">
-          <div class="shelf reveal">
-            <h3>Languages I use <span>${String(stack.length).padStart(2, "0")}</span></h3>
-            <ul class="stack">
-              ${stack.map(([l, u]) => `<li><b>${l}</b><small>${u}</small></li>`).join("\n              ")}
-            </ul>
-          </div>
-          <div class="services">
-            <div class="soon-item reveal">
-              <h3>IT solution consulting <span class="status live">free</span></h3>
-              <p>Need a solution for your business, issue, task, project or assignment? Just let me know — any channel works.</p>
-            </div>
-            <div class="soon-item reveal">
-              <h3>Programming training <span class="status live">free</span></h3>
-              <p>For teammates, friends and the curious. Every day after 20:30 (GMT+7) I check my inbox and start training sessions. English, Tiếng Việt, 中文, Deutsch, Français, 日本語, 한국어 or Русский — or any translator.</p>
-            </div>
-            <div class="tip reveal">
-              <p class="tip-title">Please focus on the problem</p>
-              <div class="tip-grid">
-                <div><span class="tip-ok">Do</span><p>“Hi, I'm confused about … and the problem is …”</p></div>
-                <div><span class="tip-no">Don't</span><p>“Hi.” <span class="c">…waiting…</span> then the problem, three messages later.</p></div>
-              </div>
-            </div>
-          </div>
+        <div class="shelf reveal">
+          <h3>Languages <span>${String(stack.length).padStart(2, "0")}+</span></h3>
+          <ul class="stack">
+            ${stack.map(([l, u]) => `<li><b>${l}</b><small>${u}</small></li>`).join("\n            ")}
+          </ul>
         </div>
       </div>
     </div>
@@ -147,15 +207,20 @@ Marketing  Account Planner
   <section class="section" id="projects">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>02</b> / projects</div>
+        <div class="section-num"><b>03</b> / projects</div>
         <div>
-          <h2>Public projects</h2>
-          <p class="section-sub">Build tools, web frameworks, embedded devices and standards tracking — from my GitHub.</p>
+          <h2>Some public projects</h2>
+          <p class="section-sub">Build systems, web frameworks, standards tracking and embedded tools.</p>
         </div>
       </div>
       <div class="section-body">
+        <ul class="ledger reveal">
+          <li class="ledger-head"><div><span>Name</span><span>Status</span><span>Stack</span><span></span></div></li>
+          ${projects.map(row).join("\n          ")}
+        </ul>
+        <h3 class="subhead reveal">Also on GitHub</h3>
         <div class="cards">
-          ${projects.map((p, i) => card(p, i === 0)).join("\n          ")}
+          ${more.map(card).join("\n          ")}
         </div>
         <a class="more reveal" href="${GH}?tab=repositories" target="_blank" rel="noopener">${icon.github}See all repositories on GitHub${icon.arrow}</a>
       </div>
@@ -165,7 +230,7 @@ Marketing  Account Planner
   <section class="section" id="notebook">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>03</b> / notebook</div>
+        <div class="section-num"><b>04</b> / notebook</div>
         <div>
           <h2>Notebook</h2>
           <p class="section-sub">Notes I write while learning — fundamentals, summaries of specifications and references I keep coming back to.</p>
@@ -201,14 +266,16 @@ Marketing  Account Planner
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <p class="contact-kicker">04 / contact — have a problem to solve?</p>
-    <a class="contact-mail" href="mailto:thanhntmany@gmail.com">thanhntmany@gmail.com</a>
+    <p class="contact-kicker">05 / contact — just inform me by any way</p>
+    <a class="contact-mail" href="mailto:${EMAIL}">${EMAIL}</a>
     <div class="contact-row">
-      <button class="btn" type="button" data-copy="thanhntmany@gmail.com" do-active="${__dirname + "/cpn/copy.mjs"}">${icon.copy}Copy email</button>
+      <button class="btn" type="button" data-copy="${EMAIL}" do-active="${__dirname + "/cpn/copy.mjs"}">${icon.copy}Copy email</button>
+      <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
+      <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}Facebook</a>
+      <a class="btn" href="${X}" target="_blank" rel="noopener">${icon.x}@Thanhnt_many</a>
       <a class="btn" href="${GH}" target="_blank" rel="noopener">${icon.github}GitHub</a>
-      <a class="btn" href="https://www.facebook.com/thanhntmany/" target="_blank" rel="noopener">${icon.facebook}Facebook</a>
-      <a class="btn" href="https://twitter.com/Thanhnt_many" target="_blank" rel="noopener">${icon.x}@Thanhnt_many</a>
     </div>
+    <p class="contact-note">${icon.clock}Inbox checked every day after 20:30 (GMT+7). Please focus on the problem in your first message.</p>
     <div class="footer">
       <span>© Nguyễn Thuận Thành · Vietnam</span>
       <span>Built with <a href="${GH}/phloemjs" target="_blank" rel="noopener">phloemjs</a> · hosted on GitHub Pages</span>
