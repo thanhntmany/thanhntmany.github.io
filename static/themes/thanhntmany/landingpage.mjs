@@ -25,6 +25,9 @@ const icon = {
     clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
 }
 
+// Brand logo, inlined so it renders crisp with no extra request (source: static/logo.svg).
+const logo = `<svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><g fill="#fff"><path fill="#00f" d="M64 56a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8Z"/><path d="M29.402 4.5a3 3 0 0 1 5.196 0L49.3205 30a20 20 0 1 1-34.641 0Z"/><path fill="#00f" d="M31.134 5.5a1 1 0 0 1 1.732 0L47.5885 31a18 18 0 0 0-31.177 0Z"/><circle cx="32" cy="6" r="3"/><circle fill="#00f" cx="32" cy="6" r="1"/><circle cx="32" cy="40" r="20"/><circle fill="#00f" cx="32" cy="40" r="16"/><polygon points="32,39 41.526,33.5 32,31 22.474,33.5"/><polygon points="31.134,40.5 21.608,35 24.206,44.5 31.134,51.5"/><polygon points="32.866,40.5 32.866,51.5 39.794,44.5 42.392,35"/><circle cx="32" cy="22" r="6"/><circle cx="16.4115" cy="49" r="6"/><circle cx="47.5885" cy="49" r="6"/><g fill="#00f"><circle cx="32" cy="22" r="4"/><circle cx="16.4115" cy="49" r="4"/><circle cx="47.5885" cy="49" r="4"/></g></g></svg>`
+
 // Renders the landing page in one language ("en" or "vi").
 export function render(lang) {
     const T = dict[lang], other = lang === "en" ? vi : en, page = html5.c(), $ = page.$
@@ -53,14 +56,14 @@ export function render(lang) {
     const S = T.services, F = S.focus
     // A chat bubble from the visitor ("you") or from me, labelled so replies are clearly mine.
     const msg = (who, text) => who === "me"
-        ? `<div class="msg-row me"><span class="avatar" aria-hidden="true">TN</span><div><small class="who">${F.me}</small><p class="msg me">${text}</p></div></div>`
+        ? `<div class="msg-row me"><span class="avatar">${logo}</span><div><small class="who">${F.me}</small><p class="msg me">${text}</p></div></div>`
         : `<div class="msg-row you"><div><small class="who">${F.you}</small><p class="msg you">${text}</p></div></div>`
 
     $.lang = lang
     // Applied before first paint so the saved theme never flashes.
     page.HTMLrequire(`<meta name="description" content="${T.description}">`)
     page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
-    page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
+    page.HTMLrequire(`<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="${__dirname}/static/logo.svg"><link rel="apple-touch-icon" href="${__dirname}/static/apple-touch-icon.png">`)
     page.HTMLrequire(`<link rel="canonical" href="${SITE + T.path}"><link rel="alternate" hreflang="en" href="${SITE}/"><link rel="alternate" hreflang="vi" href="${SITE}/vi/"><link rel="alternate" hreflang="x-default" href="${SITE}/">`)
     page.HTMLrequire(`<script>document.documentElement.lang="${lang}";try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
     page.HTMLrequire(`<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`)
@@ -72,7 +75,7 @@ export function render(lang) {
 
 <header class="topbar" do-active="${__dirname + "/cpn/topbar.mjs"}">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="thanhntmany — ${T.home}"><span class="brand-mark">TN</span><span><span class="brand-tilde">~/</span>thanhntmany</span></a>
+    <a class="brand" href="#top" aria-label="thanhntmany — ${T.home}"><span class="brand-mark">${logo}</span><span><span class="brand-tilde">~/</span>thanhntmany</span></a>
     <nav class="nav" aria-label="${T.nav.sections}">
       <a href="#services">${T.nav.services}</a>
       <a href="#about">${T.nav.about}</a>
@@ -100,7 +103,7 @@ export function render(lang) {
 
       <aside class="reach" id="contact-card" aria-label="${T.hero.contact}">
         <div class="reach-head">
-          <span class="brand-mark">TN</span>
+          <span class="brand-mark">${logo}</span>
           <div><b>Nguyễn Thuận Thành</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
         </div>
         <ul class="channels">
