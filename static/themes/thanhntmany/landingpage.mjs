@@ -2,11 +2,15 @@ import phloemjs from "phloemjs/server-side.mjs"
 const __dirname = phloemjs.dirname(import.meta.url), { StringAr } = phloemjs, buildTag = phloemjs.HTML.buildTag
 import html5 from "phloemjs/htmlbase/html5.mjs"
 import projects from "./data/projects.mjs"
+import en from "./i18n/en.mjs"
+import vi from "./i18n/vi.mjs"
 
-const page = html5.c(), $ = page.$
-export default page
+const GH = "https://github.com/thanhntmany", REPO = GH + "/thanhntmany.github.io/tree/main", SITE = "https://thanhntmany.github.io"
+const EMAIL = "thanhntmany@gmail.com", PHONE = "+84 344 087 349", TEL = "+84344087349",
+    FB = "https://fb.com/thanhntmany", X = "https://twitter.com/Thanhnt_many"
+const langs = ["English", "Tiếng Việt", "中文", "Deutsch", "Français", "日本語", "한국어", "Русский"]
+export const dict = { en, vi }
 
-const GH = "https://github.com/thanhntmany", REPO = GH + "/thanhntmany.github.io/tree/main"
 const icon = {
     mail: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
     copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>`,
@@ -21,73 +25,59 @@ const icon = {
     clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
 }
 
-const EMAIL = "thanhntmany@gmail.com", PHONE = "+84 344 087 349", TEL = "+84344087349",
-    FB = "https://fb.com/thanhntmany", X = "https://twitter.com/Thanhnt_many"
+// Renders the landing page in one language ("en" or "vi").
+export function render(lang) {
+    const T = dict[lang], other = lang === "en" ? vi : en, page = html5.c(), $ = page.$
+    const tr = v => v && typeof v === "object" && !Array.isArray(v) ? v[lang] ?? v.en : v
+    const copyAttrs = value => `data-copy="${value}" data-copied="${T.copied}" do-active="${__dirname + "/cpn/copy.mjs"}"`
 
-const channels = [
-    { icon: icon.mail, label: "Email", value: EMAIL, href: "mailto:" + EMAIL, copy: EMAIL },
-    { icon: icon.phone, label: "Phone", value: PHONE, href: "tel:" + TEL, copy: PHONE },
-    { icon: icon.facebook, label: "Facebook", value: "fb.com/thanhntmany", href: FB },
-    { icon: icon.x, label: "X", value: "@Thanhnt_many", href: X },
-]
-const channel = c => `<li><a href="${c.href}"${c.href.startsWith("http") ? ` target="_blank" rel="noopener"` : ""}>${c.icon}<span><small>${c.label}</small>${c.value}</span></a>${c.copy ? `<button class="icon-btn" type="button" aria-label="Copy ${c.label.toLowerCase()}" data-copy="${c.copy}" do-active="${__dirname + "/cpn/copy.mjs"}">${icon.copy}</button>` : ""}</li>`
+    const channels = [
+        { icon: icon.mail, label: T.channel.email, value: EMAIL, href: "mailto:" + EMAIL, copy: EMAIL },
+        { icon: icon.phone, label: T.channel.phone, value: PHONE, href: "tel:" + TEL, copy: PHONE },
+        { icon: icon.facebook, label: T.channel.facebook, value: "fb.com/thanhntmany", href: FB },
+        { icon: icon.x, label: T.channel.x, value: "@Thanhnt_many", href: X },
+    ]
+    const channel = c => `<li><a href="${c.href}"${c.href.startsWith("http") ? ` target="_blank" rel="noopener"` : ""}>${c.icon}<span><small>${c.label}</small>${c.value}</span></a>${c.copy ? `<button class="icon-btn" type="button" aria-label="${T.copy} ${c.label.toLowerCase()}" ${copyAttrs(c.copy)}>${icon.copy}</button>` : ""}</li>`
 
-const langs = ["English", "Tiếng Việt", "中文", "Deutsch", "Français", "日本語", "한국어", "Русский"]
-
-const card = p => {
-    const inner = `
-            <div class="card-top"><span class="card-path">${[p.year, p.type].filter(Boolean).join(" · ")}</span>${p.status ? `<span class="status ${p.status === "completed" ? "live" : ""}">${p.status}</span>` : ""}</div>
-            <h3>${p.name}</h3>
-            <p>${p.summary}</p>
+    const card = p => {
+        const inner = `
+            <div class="card-top"><span class="card-path">${[tr(p.year), tr(p.type)].filter(Boolean).join(" · ")}</span>${p.status ? `<span class="status ${p.status === "completed" ? "live" : ""}">${T.projects.status[p.status]}</span>` : ""}</div>
+            <h3>${tr(p.name)}</h3>
+            <p>${tr(p.summary)}</p>
             <div class="card-foot">${(p.stack || []).map(t => `<span class="tag">${t}</span>`).join("")}</div>${p.link ? `
             <span class="card-arrow">${icon.arrow}</span>` : ""}
           `
-    return p.link ? `<a class="card reveal" href="${p.link}" target="_blank" rel="noopener">${inner}</a>` : `<div class="card reveal">${inner}</div>`
-}
+        return p.link ? `<a class="card reveal" href="${p.link}" target="_blank" rel="noopener">${inner}</a>` : `<div class="card reveal">${inner}</div>`
+    }
+    const ask = subject => `<a class="btn btn-primary" href="mailto:${EMAIL}?subject=${encodeURIComponent(subject)}">${icon.mail}${T.projects.btn}</a>`
+    const S = T.services, F = S.focus
 
-// Career path from the CV, without employer names.
-const timeline = [
-    ["Now", "ERP Fullstack Dev & IoT Engineer", "Customizing Android and embedded Linux operating systems for devices, and building the control systems, Android apps and ESP32 firmware around them."],
-    ["2024 – now", "Project Manager · Team Lead", "Built a dedicated team to deliver a tailored LMS for a Korean client on Odoo 17 and ExpressJS, with an architecture designed to scale."],
-    ["2023 – 2024", "Team Lead · Freelance team", "Delivered business management solutions for SMEs, including water supply and drainage management built on Odoo 16 and ArcGIS."],
-    ["2021 – 2023", "Signals Officer · Military service", "Ran wireless communication operations and maintained computer systems and data infrastructure on Microsoft SQL Server."],
-    ["2019 – 2021", "ERP · Fullstack Developer", "Built microservices from scratch, created automated document-processing tools, and trained and mentored new team members."],
-    ["2018 – 2019", "Odoo ERP Technical Consultant", "Developed and maintained Accounting, Warehouse, CRM and Sales modules."],
-    ["2017 – 2019", "Bachelor's degree", "University of Economics Ho Chi Minh City."],
-    ["2008", "First lines of code", "Started with Assembly (MASM32) and C, analysing software in depth and tracing problems to their root cause."],
-]
-
-const skills = [
-    ["Languages", ["JavaScript / Node.js", "Python", "C / C++", "Kotlin", "PHP", "SQL (MySQL, MS SQL Server)", "HTML5 / CSS3", "Assembly (MASM)"]],
-    ["ERP & frameworks", ["Odoo 16 / 17", "Django", "ReactJS", "ExpressJS", "Socket.IO", "Symfony", "ArcGIS"]],
-    ["Embedded & IoT", ["Android OS customization", "Embedded Linux", "Android apps (Kotlin, C)", "Control systems", "ESP32 / Embedded C", "Ubuntu administration"]],
-    ["DevOps", ["Docker", "AWS", "GitHub CI/CD", "CircleCI"]],
-    ["UI design", ["Figma", "Illustrator", "Photoshop"]],
-]
-
-// Applied before first paint so the saved theme never flashes.
-page.HTMLrequire(`<meta name="description" content="Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer in Vietnam. Free consulting on ERP (Odoo), web systems, microservices, embedded Android/Linux and IoT, plus free programming mentoring.">`)
-page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
-page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
-page.HTMLrequire(`<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
-page.HTMLrequire(`<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`)
-page.HTMLrequire(buildTag.css("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"))
-page.HTMLrequire(buildTag.css(__dirname + "/static/main.css"))
-page.HTMLrequire(buildTag.mjs(__dirname + "/main.mjs"))
-$.title = "Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer"
-$.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
+    $.lang = lang
+    // Applied before first paint so the saved theme never flashes.
+    page.HTMLrequire(`<meta name="description" content="${T.description}">`)
+    page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
+    page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
+    page.HTMLrequire(`<link rel="canonical" href="${SITE + T.path}"><link rel="alternate" hreflang="en" href="${SITE}/"><link rel="alternate" hreflang="vi" href="${SITE}/vi/"><link rel="alternate" hreflang="x-default" href="${SITE}/">`)
+    page.HTMLrequire(`<script>document.documentElement.lang="${lang}";try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
+    page.HTMLrequire(`<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`)
+    page.HTMLrequire(buildTag.css("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"))
+    page.HTMLrequire(buildTag.css(__dirname + "/static/main.css"))
+    page.HTMLrequire(buildTag.mjs(__dirname + "/main.mjs"))
+    $.title = T.title
+    $.body = new StringAr(`<a class="skip" href="#main">${T.skip}</a>
 
 <header class="topbar" do-active="${__dirname + "/cpn/topbar.mjs"}">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="thanhntmany — home"><span class="brand-mark">TN</span><span><span class="brand-tilde">~/</span>thanhntmany</span></a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#notebook">Notebook</a>
+    <a class="brand" href="#top" aria-label="thanhntmany — ${T.home}"><span class="brand-mark">TN</span><span><span class="brand-tilde">~/</span>thanhntmany</span></a>
+    <nav class="nav" aria-label="${T.nav.sections}">
+      <a href="#services">${T.nav.services}</a>
+      <a href="#about">${T.nav.about}</a>
+      <a href="#projects">${T.nav.projects}</a>
+      <a href="#notebook">${T.nav.notebook}</a>
     </nav>
-    <a class="btn btn-primary btn-sm" href="#contact">${icon.mail}<span>Get in touch</span></a>
-    <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode" do-active="${__dirname + "/cpn/theme-toggle.mjs"}">${icon.moon}${icon.sun}</button>
+    <a class="btn btn-primary btn-sm" href="#contact">${icon.mail}<span>${T.cta}</span></a>
+    <a class="icon-btn lang-switch" href="${other.path}" hreflang="${other.lang}" lang="${other.lang}" aria-label="${T.switchLabel}" title="${T.switchLabel}">${other.lang.toUpperCase()}</a>
+    <button class="icon-btn theme-toggle" type="button" aria-label="${T.themeToggle}" do-active="${__dirname + "/cpn/theme-toggle.mjs"}">${icon.moon}${icon.sun}</button>
   </div>
 </header>
 
@@ -95,16 +85,16 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="hero" id="top">
     <div class="wrap">
       <div>
-        <span class="eyebrow"><span class="dot"></span>Free IT consulting · Free programming mentoring</span>
-        <h1>How can I <span class="accent">help you</span>?</h1>
-        <p class="lede">Need a solution for your <b>business</b>, <b>project</b>, <b>issue</b> or <b>assignment</b>? Tell me about it through any channel here. I'm <b>Nguyễn Thuận Thành</b>, an ERP Fullstack Dev &amp; IoT Engineer in Vietnam — I build ERP systems, web platforms and embedded Android/Linux IoT systems.</p>
+        <span class="eyebrow"><span class="dot"></span>${T.hero.eyebrow}</span>
+        <h1>${T.hero.h1[0]}<span class="accent">${T.hero.h1[1]}</span>${T.hero.h1[2]}</h1>
+        <p class="lede">${T.hero.lede}</p>
         <div class="actions">
-          <a class="btn btn-primary" href="mailto:${EMAIL}">${icon.mail}Email me</a>
+          <a class="btn btn-primary" href="mailto:${EMAIL}">${icon.mail}${T.hero.email}</a>
           <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
         </div>
       </div>
 
-      <aside class="reach" id="contact-card" aria-label="Contact">
+      <aside class="reach" id="contact-card" aria-label="${T.hero.contact}">
         <div class="reach-head">
           <span class="brand-mark">TN</span>
           <div><b>Nguyễn Thuận Thành</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
@@ -112,7 +102,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
         <ul class="channels">
           ${channels.map(channel).join("\n          ")}
         </ul>
-        <p class="reach-note">${icon.clock}<span>I go through emails and messages every day after <b>20:30 (GMT+7)</b>.</span></p>
+        <p class="reach-note">${icon.clock}<span>${T.hero.note}</span></p>
       </aside>
     </div>
   </section>
@@ -120,50 +110,50 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="section" id="services">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>01</b> / services</div>
+        <div class="section-num"><b>01</b> / ${T.num.services}</div>
         <div>
-          <h2>Two ways I can help — both free</h2>
-          <p class="section-sub">Bring me a specific problem and we'll work out a specific solution. Don't be shy!</p>
+          <h2>${S.h2}</h2>
+          <p class="section-sub">${S.sub}</p>
         </div>
       </div>
       <div class="section-body">
         <div class="services">
           <div class="service reveal">
             <span class="service-num">A</span>
-            <h3>IT solution consulting <span class="status live">free</span></h3>
-            <p>Whether it's your business, a project, a technical issue or an assignment, tell me what you need and I'll help you find the right solution. Areas I work in:</p>
-            <ul class="chips" aria-label="Areas">${["ERP on Odoo", "Web systems & microservices", "LMS", "GIS integration", "Embedded Android & Linux", "IoT & control systems"].map(a => `<li>${a}</li>`).join("")}</ul>
-            <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Solution%20consulting">${icon.mail}Describe your problem</a>
+            <h3>${S.consulting.h3} <span class="status live">${T.free}</span></h3>
+            <p>${S.consulting.p}</p>
+            <ul class="chips" aria-label="${S.consulting.areasLabel}">${S.consulting.areas.map(a => `<li>${a}</li>`).join("")}</ul>
+            <a class="btn btn-primary" href="mailto:${EMAIL}?subject=${encodeURIComponent(S.consulting.subject)}">${icon.mail}${S.consulting.btn}</a>
           </div>
           <div class="service reveal">
             <span class="service-num">B</span>
-            <h3>Programming mentoring <span class="status live">free</span></h3>
-            <p>For teammates, friends and anyone curious to learn. Every evening after 20:30 (GMT+7) I go through my inbox and run training sessions. Send me a message in any of these languages:</p>
-            <ul class="langs" aria-label="Languages I can reply in">${langs.map(l => `<li>${l}</li>`).join("")}</ul>
-            <p class="service-fine">…or any other language through a translator.</p>
-            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}Message me on Facebook</a>
+            <h3>${S.mentoring.h3} <span class="status live">${T.free}</span></h3>
+            <p>${S.mentoring.p}</p>
+            <ul class="langs" aria-label="${S.mentoring.langsLabel}">${langs.map(l => `<li>${l}</li>`).join("")}</ul>
+            <p class="service-fine">${S.mentoring.fine}</p>
+            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}${S.mentoring.btn}</a>
           </div>
         </div>
 
         <div class="focus reveal">
-          <h3>Get straight to the problem</h3>
+          <h3>${F.h3}</h3>
           <div class="chats">
             <div class="chat chat-do">
-              <p class="chat-label">✅ Do</p>
-              <p class="msg you">Hi! I'm stuck on … — here's the problem: …</p>
-              <p class="wait">waiting…</p>
-              <p class="msg me">Here's how to solve it …</p>
+              <p class="chat-label">${F.do}</p>
+              <p class="msg you">${F.doAsk}</p>
+              <p class="wait">${F.wait}</p>
+              <p class="msg me">${F.answer}</p>
             </div>
             <div class="chat chat-dont">
-              <p class="chat-label">❌ Don't</p>
-              <p class="msg you">Hi.</p>
-              <p class="wait">waiting…</p>
-              <p class="msg me">Hi! How can I help?</p>
-              <p class="wait">waiting…</p>
-              <p class="msg you">So, the problem is …</p>
-              <p class="wait">waiting…</p>
-              <p class="msg me">Here's how to solve it …</p>
-              <p class="wait">…a whole evening later</p>
+              <p class="chat-label">${F.dont}</p>
+              <p class="msg you">${F.hi}</p>
+              <p class="wait">${F.wait}</p>
+              <p class="msg me">${F.hiBack}</p>
+              <p class="wait">${F.wait}</p>
+              <p class="msg you">${F.late}</p>
+              <p class="wait">${F.wait}</p>
+              <p class="msg me">${F.answer}</p>
+              <p class="wait">${F.evening}</p>
             </div>
           </div>
         </div>
@@ -174,19 +164,19 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="section" id="about">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>02</b> / about</div>
+        <div class="section-num"><b>02</b> / ${T.num.about}</div>
         <div>
-          <h2>Technology that improves business and life</h2>
-          <p class="section-sub">I started with assembly (MASM) at the age of 10, which taught me to understand systems from the ground up and to optimize them. Since 2018 I have built ERP systems and microservices, led teams and delivered whole systems from scratch. Today I work across ERP and IoT, with the goal of becoming a solution architect.</p>
+          <h2>${T.about.h2}</h2>
+          <p class="section-sub">${T.about.sub}</p>
         </div>
       </div>
       <div class="section-body">
         <div class="about">
           <ol class="timeline reveal">
-            ${timeline.map(([when, role, what]) => `<li><span class="tl-when">${when}</span><div><b>${role}</b><p>${what}</p></div></li>`).join("\n            ")}
+            ${T.about.timeline.map(([when, role, what]) => `<li><span class="tl-when">${when}</span><div><b>${role}</b><p>${what}</p></div></li>`).join("\n            ")}
           </ol>
           <div class="shelf skills reveal">
-            ${skills.map(([group, items]) => `<h3>${group}</h3><ul class="chips">${items.map(i => `<li>${i}</li>`).join("")}</ul>`).join("\n            ")}
+            ${T.about.skills.map(([group, items]) => `<h3>${group}</h3><ul class="chips">${items.map(i => `<li>${i}</li>`).join("")}</ul>`).join("\n            ")}
           </div>
         </div>
       </div>
@@ -196,10 +186,10 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="section" id="projects">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>03</b> / projects</div>
+        <div class="section-num"><b>03</b> / ${T.num.projects}</div>
         <div>
-          <h2>Projects</h2>
-          <p class="section-sub">ERP platforms, web systems, microservices and IoT, each built around a specific problem. Client names are kept confidential.</p>
+          <h2>${T.projects.h2}</h2>
+          <p class="section-sub">${T.projects.sub}</p>
         </div>
       </div>
       <div class="section-body">
@@ -207,13 +197,13 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
           ${projects.map(card).join("\n          ")}
         </div>
         <div class="updating reveal">
-          <p><b>More projects are on the way.</b> Ask me about work similar to what you need.</p>
-          <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
+          <p>${T.projects.more}</p>
+          ${ask(T.projects.subject)}
         </div>` : `<div class="updating reveal">
-          <p><b>This list is being updated.</b> Many completed projects aren't listed yet — ask me about work similar to what you need.</p>
-          <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
+          <p>${T.projects.empty}</p>
+          ${ask(T.projects.subject)}
         </div>`}
-        <a class="more reveal" href="${GH}?tab=repositories" target="_blank" rel="noopener">${icon.github}Open-source work on GitHub${icon.arrow}</a>
+        <a class="more reveal" href="${GH}?tab=repositories" target="_blank" rel="noopener">${icon.github}${T.projects.github}${icon.arrow}</a>
       </div>
     </div>
   </section>
@@ -221,34 +211,20 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="section" id="notebook">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="section-num"><b>04</b> / notebook</div>
+        <div class="section-num"><b>04</b> / ${T.num.notebook}</div>
         <div>
-          <h2>Notebook</h2>
-          <p class="section-sub">Notes I keep while learning: fundamentals, specification summaries and references I come back to.</p>
+          <h2>${T.notebook.h2}</h2>
+          <p class="section-sub">${T.notebook.sub}</p>
         </div>
       </div>
       <div class="section-body">
         <div class="index">
-          <div class="shelf reveal">
-            <h3>Basics <span>02</span></h3>
+          ${T.notebook.shelves.map(([title, items]) => `<div class="shelf reveal">
+            <h3>${title} <span>${String(items.length).padStart(2, "0")}</span></h3>
             <ul>
-              <li><a href="${REPO}/notebook/basic/OSI-OpenSystemsInterconnection" target="_blank" rel="noopener"><span>OSI model</span><small>networking</small></a></li>
-              <li><a href="${REPO}/notebook/basic/regex" target="_blank" rel="noopener"><span>Regular expressions</span><small>text</small></a></li>
+              ${items.map(([path, name, topic]) => `<li><a href="${REPO}/${path}" target="_blank" rel="noopener"><span>${name}</span><small>${topic}</small></a></li>`).join("\n              ")}
             </ul>
-          </div>
-          <div class="shelf reveal">
-            <h3>RFC summaries <span>02</span></h3>
-            <ul>
-              <li><a href="${REPO}/notebook/summary/rfc/rfc5389" target="_blank" rel="noopener"><span>RFC 5389 — STUN</span><small>NAT</small></a></li>
-              <li><a href="${REPO}/notebook/summary/rfc" target="_blank" rel="noopener"><span>RFC map</span><small>index</small></a></li>
-            </ul>
-          </div>
-          <div class="shelf reveal">
-            <h3>References <span>01</span></h3>
-            <ul>
-              <li><a href="${REPO}/notebook/open-source-license" target="_blank" rel="noopener"><span>Open source licenses</span><small>legal</small></a></li>
-            </ul>
-          </div>
+          </div>`).join("\n          ")}
         </div>
       </div>
     </div>
@@ -257,19 +233,23 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <p class="contact-kicker">05 / contact — reach me any way you like</p>
+    <p class="contact-kicker">${T.contact.kicker}</p>
     <a class="contact-mail" href="mailto:${EMAIL}">${EMAIL}</a>
     <div class="contact-row">
-      <button class="btn" type="button" data-copy="${EMAIL}" do-active="${__dirname + "/cpn/copy.mjs"}">${icon.copy}Copy email</button>
+      <button class="btn" type="button" ${copyAttrs(EMAIL)}>${icon.copy}${T.contact.copy}</button>
       <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
       <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}Facebook</a>
       <a class="btn" href="${X}" target="_blank" rel="noopener">${icon.x}@Thanhnt_many</a>
       <a class="btn" href="${GH}" target="_blank" rel="noopener">${icon.github}GitHub</a>
     </div>
-    <p class="contact-note">${icon.clock}I go through emails and messages every day after 20:30 (GMT+7). Put the problem in your first message and I can help faster.</p>
+    <p class="contact-note">${icon.clock}${T.contact.note}</p>
     <div class="footer">
-      <span>© Nguyễn Thuận Thành · Vietnam</span>
-      <span>Built with <a href="${GH}/phloemjs" target="_blank" rel="noopener">phloemjs</a> · hosted on GitHub Pages</span>
+      <span>© Nguyễn Thuận Thành · ${T.contact.country}</span>
+      <span>${T.contact.built[0]} <a href="${GH}/phloemjs" target="_blank" rel="noopener">phloemjs</a> · ${T.contact.built[1]}</span>
     </div>
   </div>
 </footer>`)
+    return page
+}
+
+export default render("en")
