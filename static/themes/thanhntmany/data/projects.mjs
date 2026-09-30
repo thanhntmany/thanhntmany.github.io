@@ -1,52 +1,68 @@
 // Projects shown in the Projects section, newest first. Client and employer names are intentionally left out.
 // While the list is empty the section shows an "being updated" note that points visitors to contact instead.
+// Text fields take a plain string (same in every language) or { en, vi }.
 //
 // {
-//     name: "Project name",
+//     name: { en: "Project name", vi: "Tên dự án" },
 //     year: "2025",                        // or a range, e.g. "2023 – 2024"
 //     type: "ERP website",                 // role, kind of work, client industry, ...
 //     status: "completed",                 // optional: "completed" or "ongoing"
-//     summary: "What problem it solved and the result, in one or two sentences.",
+//     summary: { en: "What problem it solved and the result.", vi: "Giải quyết vấn đề gì và kết quả." },
 //     stack: ["Python", "Odoo"],
 //     link: "https://...",                 // optional: live site, repo or case study
 // },
 export default [
     {
-        name: "Embedded Android & Linux IoT systems",
+        name: { en: "Embedded Android & Linux IoT systems", vi: "Hệ thống IoT trên Android & Linux nhúng" },
         type: "IoT Engineer",
         status: "ongoing",
-        summary: "End-to-end IoT systems: customizing Android and embedded Linux for the devices, plus the control system, Android apps and ESP32 firmware in C.",
+        summary: {
+            en: "End-to-end IoT systems: customizing Android and embedded Linux for the devices, plus the control system, Android apps and ESP32 firmware in C.",
+            vi: "Hệ thống IoT trọn gói: tuỳ biến Android và Linux nhúng cho thiết bị, cùng hệ thống điều khiển, ứng dụng Android và firmware ESP32 viết bằng C.",
+        },
         stack: ["Android OS", "Embedded Linux", "Kotlin", "C", "Control systems", "ESP32"],
     },
     {
-        name: "Tailored LMS platform",
-        year: "2024 – now",
+        name: { en: "Tailored LMS platform", vi: "Nền tảng LMS theo yêu cầu" },
+        year: { en: "2024 – now", vi: "2024 – nay" },
         type: "Project Manager · Team Lead",
-        summary: "A learning management system for a Korean client, delivered by a dedicated team on an architecture designed for higher load and new services. Custom Odoo 17 modules, widgets and integrations cover courses, college transcripts, payroll and payments, with ExpressJS APIs for customer support and static assets.",
+        summary: {
+            en: "A learning management system for a Korean client, delivered by a dedicated team on an architecture designed for higher load and new services. Custom Odoo 17 modules, widgets and integrations cover courses, college transcripts, payroll and payments, with ExpressJS APIs for customer support and static assets.",
+            vi: "Hệ thống quản lý học tập cho một khách hàng Hàn Quốc, do đội ngũ chuyên trách phát triển trên kiến trúc chịu tải cao và sẵn sàng mở rộng dịch vụ. Các module, widget và tích hợp Odoo 17 tuỳ biến cho khoá học, bảng điểm đại học, lương và thanh toán; API ExpressJS cho chăm sóc khách hàng và phân phối tài nguyên tĩnh.",
+        },
         stack: ["Odoo 17", "Python", "ExpressJS", "System architecture"],
     },
     {
-        name: "Water supply & drainage management",
+        name: { en: "Water supply & drainage management", vi: "Quản lý cấp thoát nước" },
         year: "2023 – 2024",
         type: "Team Lead",
         status: "completed",
-        summary: "Water supply and drainage management built on Odoo 16 and integrated with the ArcGIS geospatial platform, delivered as part of business management solutions for SMEs.",
+        summary: {
+            en: "Water supply and drainage management built on Odoo 16 and integrated with the ArcGIS geospatial platform, delivered as part of business management solutions for SMEs.",
+            vi: "Hệ thống quản lý cấp thoát nước xây dựng trên Odoo 16, tích hợp nền tảng địa không gian ArcGIS, thuộc bộ giải pháp quản lý doanh nghiệp cho SME.",
+        },
         stack: ["Odoo 16", "ArcGIS", "Python"],
     },
     {
-        name: "Microservices & automated document processing",
+        name: { en: "Microservices & automated document processing", vi: "Microservices & xử lý tài liệu tự động" },
         year: "2019 – 2021",
         type: "ERP · Fullstack Developer",
         status: "completed",
-        summary: "Microservices built from scratch and tools for automated document processing for an international company, alongside training and mentoring new team members.",
+        summary: {
+            en: "Microservices built from scratch and tools for automated document processing for an international company, alongside training and mentoring new team members.",
+            vi: "Microservices xây dựng từ đầu và công cụ xử lý tài liệu tự động cho một công ty quốc tế, đồng thời đào tạo và hướng dẫn thành viên mới.",
+        },
         stack: ["Node.js", "ExpressJS", "Socket.IO", "React", "Django", "Docker", "AWS", "CI/CD"],
     },
     {
-        name: "Odoo ERP modules",
+        name: { en: "Odoo ERP modules", vi: "Module Odoo ERP" },
         year: "2018 – 2019",
         type: "Odoo ERP Technical Consultant",
         status: "completed",
-        summary: "Accounting, warehouse, CRM and sales modules developed and maintained for an Odoo Gold Partner.",
+        summary: {
+            en: "Accounting, warehouse, CRM and sales modules developed and maintained for an Odoo Gold Partner.",
+            vi: "Các module kế toán, kho, CRM và bán hàng được phát triển và bảo trì cho một Odoo Gold Partner.",
+        },
         stack: ["Odoo", "Python", "JavaScript"],
     },
 ]
