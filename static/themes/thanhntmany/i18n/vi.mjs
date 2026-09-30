@@ -53,7 +53,7 @@ export default {
             doAsk: "Chào bạn, mình đang bị kẹt ở … Cụ thể là …",
             answer: "Ok, mình hiểu rồi. Bạn thử làm thế này nhé: …",
             hi: "Chào bạn.",
-            hiBack: "Chào bạn, có chuyện gì thế?",
+            hiBack: "Chào bạn, tôi có thể giúp gì cho bạn?",
             late: "À, chuyện là …",
             evening: "…thế là hết một buổi tối",
         },

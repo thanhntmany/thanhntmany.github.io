@@ -53,7 +53,7 @@ export default {
             doAsk: "Hi! I'm stuck on … — here's the problem: …",
             answer: "Got it — here's how to solve it: …",
             hi: "Hi.",
-            hiBack: "Hi! How can I help?",
+            hiBack: "Hi, how can I help you?",
             late: "So, the problem is …",
             evening: "…a whole evening later",
         },
