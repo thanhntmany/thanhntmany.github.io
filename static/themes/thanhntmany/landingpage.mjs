@@ -47,7 +47,7 @@ const card = p => {
 
 const stack = [
     ["MASM", "RCA, application analysing"],
-    ["C / C++", "applications, tools, LeetCode algorithm problems"],
+    ["C / C++", "ESP32 IoT project cores, custom Linux-based OSes (Ubuntu, Android), tools"],
     ["JavaScript", "Node.js — both web and application"],
     ["Python", "data science, Django, Odoo, academic research"],
     ["Go", "embedded systems"],
