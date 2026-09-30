@@ -679,6 +679,127 @@ p {
   color: var(--ink-2);
 }
 
+/* about */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.stack li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 10px 0;
+}
+
+.stack b {
+  font: 600 14px/1.4 var(--mono);
+}
+
+.stack small {
+  color: var(--ink-3);
+  font-size: 13px;
+  text-align: right;
+}
+
+.services {
+  display: grid;
+  gap: 16px;
+}
+
+.services .soon-item {
+  border-style: solid;
+  background: var(--bg-elev);
+}
+
+.services .soon-item h3 {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.tip {
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  background: var(--bg-sunk);
+}
+
+.tip-title {
+  color: var(--ink-3);
+  font: 600 12px/1.4 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+.tip-grid p {
+  margin-top: 6px;
+  color: var(--ink-2);
+}
+
+.tip-grid .c {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.tip-ok,
+.tip-no {
+  font: 600 12px/1 var(--mono);
+}
+
+.tip-ok {
+  color: var(--ok);
+}
+
+.tip-no {
+  color: var(--accent);
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+  color: var(--ink-3);
+  font: 500 12px/1 var(--mono);
+}
+
+.stars svg {
+  width: 13px;
+  height: 13px;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  color: var(--ink-2);
+  font-weight: 600;
+  transition: color .15s;
+}
+
+.more svg {
+  width: 18px;
+  height: 18px;
+}
+
+.more:hover {
+  color: var(--accent);
+}
+
 /* contact */
 
 .contact {
@@ -805,6 +926,10 @@ p {
   .index {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 720px) {
@@ -818,7 +943,8 @@ p {
 
   .cards,
   .index,
-  .soon {
+  .soon,
+  .tip-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
