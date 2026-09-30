@@ -58,7 +58,7 @@ const stack = [
 ]
 
 // Applied before first paint so the saved theme never flashes.
-page.HTMLrequire(`<meta name="description" content="Need a solution for your business, issue, task, project or assignment? Free IT solution consulting and programming training by Nguyễn Thuận Thành — ERP · IoT · Fullstack developer.">`)
+page.HTMLrequire(`<meta name="description" content="Need a solution for your business, issue, task, project or assignment? Free IT solution consulting and programming training by Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer: Odoo ERP, web systems, microservices and ESP32 IoT.">`)
 page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
 page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
 page.HTMLrequire(`<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
@@ -66,7 +66,7 @@ page.HTMLrequire(`<link rel="preconnect" href="https://fonts.googleapis.com"><li
 page.HTMLrequire(buildTag.css("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"))
 page.HTMLrequire(buildTag.css(__dirname + "/static/main.css"))
 page.HTMLrequire(buildTag.mjs(__dirname + "/main.mjs"))
-$.title = "Nguyễn Thuận Thành — Free IT solution consulting & programming training"
+$.title = "Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer"
 $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar" do-active="${__dirname + "/cpn/topbar.mjs"}">
@@ -89,7 +89,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <div>
         <span class="eyebrow"><span class="dot"></span>Free IT consulting · Free programming training</span>
         <h1>Might I <span class="accent">help you</span>?</h1>
-        <p class="lede">Just inform me by any way if you need a solution for your <b>business</b>, <b>issue</b>, <b>task</b>, <b>project</b> or <b>assignment</b>. I'm <b>Nguyễn Thuận Thành</b> — an ERP · IoT · Fullstack developer in Vietnam.</p>
+        <p class="lede">Just inform me by any way if you need a solution for your <b>business</b>, <b>issue</b>, <b>task</b>, <b>project</b> or <b>assignment</b>. I'm <b>Nguyễn Thuận Thành</b> — ERP Fullstack Dev &amp; IoT Engineer in Vietnam, building ERP systems, web platforms and IoT devices.</p>
         <div class="actions">
           <a class="btn btn-primary" href="mailto:${EMAIL}">${icon.mail}Email me</a>
           <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
@@ -99,7 +99,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <aside class="reach" id="contact-card" aria-label="Contact">
         <div class="reach-head">
           <span class="brand-mark">TN</span>
-          <div><b>Thanh Nguyen Thuan</b><small>ERP · IoT · Fullstack Developer</small></div>
+          <div><b>Thanh Nguyen Thuan</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
         </div>
         <ul class="channels">
           ${channels.map(channel).join("\n          ")}
