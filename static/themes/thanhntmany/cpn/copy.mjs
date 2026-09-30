@@ -20,7 +20,7 @@ export function activeDom(btn) {
             await navigator.clipboard.writeText(text)
             notify("Copied " + text)
         } catch (e) {
-            window.location.href = "mailto:" + text
+            notify(text)
         }
     })
 }
