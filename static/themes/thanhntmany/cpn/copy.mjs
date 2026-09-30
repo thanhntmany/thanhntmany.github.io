@@ -18,7 +18,7 @@ export function activeDom(btn) {
         const text = btn.getAttribute("data-copy")
         try {
             await navigator.clipboard.writeText(text)
-            notify("Copied " + text)
+            notify((btn.getAttribute("data-copied") || "Copied") + " " + text)
         } catch (e) {
             notify(text)
         }
