@@ -830,24 +830,58 @@ p {
   color: var(--accent);
 }
 
+.msg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 88%;
+}
+
+.msg-row.you {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.msg-row.me {
+  align-self: flex-start;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  font: 700 10px/1 var(--mono);
+}
+
+.who {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink-3);
+  font: 500 11px/1.2 var(--mono);
+}
+
 .msg {
-  max-width: 85%;
+  display: inline-block;
   padding: 8px 12px;
   border-radius: 14px;
   font-size: 14px;
+  text-align: left;
 }
 
 .msg.you {
-  align-self: flex-end;
   border-bottom-right-radius: 4px;
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--bg-sunk);
+  color: var(--ink);
 }
 
 .msg.me {
-  align-self: flex-start;
   border-bottom-left-radius: 4px;
-  background: var(--bg-sunk);
+  background: var(--accent-soft);
   color: var(--ink);
 }
 
