@@ -1,6 +1,7 @@
 import phloemjs from "phloemjs/server-side.mjs"
 const __dirname = phloemjs.dirname(import.meta.url), { StringAr } = phloemjs, buildTag = phloemjs.HTML.buildTag
 import html5 from "phloemjs/htmlbase/html5.mjs"
+import projects from "./data/projects.mjs"
 
 const page = html5.c(), $ = page.$
 export default page
@@ -33,38 +34,16 @@ const channel = c => `<li><a href="${c.href}"${c.href.startsWith("http") ? ` tar
 
 const langs = ["English", "Tiếng Việt", "中文", "Deutsch", "Français", "日本語", "한국어", "Русский"]
 
-// "Some public projects" from the GitHub profile README; repo is set only where a public repository exists.
-const STATUS = { Stable: "live", WIP: "", Pending: "" }
-const projects = [
-    { name: "TNT build system", status: "WIP", stack: "C, Cross platforms", repo: "tntbuild" },
-    { name: "Node server eco-system", status: "WIP", stack: "JS, Java, C, Cross platforms, Web3" },
-    { name: "Phloemjs web framework", status: "WIP", stack: "JS, C", repo: "phloemjs" },
-    { name: "Module-based web/app-system", status: "WIP", stack: "JS, C" },
-    { name: "do-it-later-js", status: "Stable", stack: "JS", repo: "do-it-later-js" },
-    { name: "rfc-diagram", status: "Stable", stack: "CSV", repo: "rfc-diagram" },
-    { name: "rfcs-graph-data-processer", status: "Stable", stack: "HTML, JS" },
-    { name: "directory-as-set-js", status: "Stable", stack: "JS", repo: "directory-as-set-js" },
-    { name: "directory-as-set-js (C version)", status: "Pending", stack: "C, Cross platforms" },
-]
-const row = p => {
-    const cells = `<span class="ledger-name">${p.name}</span><span class="status ${STATUS[p.status]}">${p.status}</span><span class="ledger-stack">${p.stack}</span><span class="ledger-go">${p.repo ? icon.arrow : ""}</span>`
-    return p.repo ? `<li><a href="${GH}/${p.repo}" target="_blank" rel="noopener">${cells}</a></li>` : `<li><div>${cells}</div></li>`
-}
-
-// Other public repositories on github.com/thanhntmany
-const more = [
-    { repo: "esp32-oscilloscope", name: "ESP32 Oscilloscope", tags: ["C", "ESP-IDF", "IoT"], desc: "A 2-channel oscilloscope on an ESP32 that serves its waveform display and controls to any browser over its own Wi-Fi." },
-    { repo: "rounding-zoom", name: "Rounding Zoom", tags: ["TypeScript", "VS Code"], desc: "A VS Code extension with font-size based, integer-rounded zoom so text stays sharp." },
-    { repo: "esp-flasher", name: "esp-flasher", tags: ["C", "IoT"], desc: "A standalone tool and C library for flashing ESP devices without esptool." },
-    { repo: "pn532-js", name: "pn532-js", tags: ["JavaScript", "RFID"], desc: "A library to handle the PN532 RFID reader." },
-]
-const card = p => `<a class="card reveal" href="${GH}/${p.repo}" target="_blank" rel="noopener">
-            <span class="card-path">thanhntmany/${p.repo}</span>
+const card = p => {
+    const inner = `
+            <div class="card-top"><span class="card-path">${[p.year, p.type].filter(Boolean).join(" · ")}</span><span class="status live">completed</span></div>
             <h3>${p.name}</h3>
-            <p>${p.desc}</p>
-            <div class="card-foot">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
-            <span class="card-arrow">${icon.arrow}</span>
-          </a>`
+            <p>${p.summary}</p>
+            <div class="card-foot">${(p.stack || []).map(t => `<span class="tag">${t}</span>`).join("")}</div>${p.link ? `
+            <span class="card-arrow">${icon.arrow}</span>` : ""}
+          `
+    return p.link ? `<a class="card reveal" href="${p.link}" target="_blank" rel="noopener">${inner}</a>` : `<div class="card reveal">${inner}</div>`
+}
 
 const stack = [
     ["MASM", "RCA, application analysing"],
@@ -209,20 +188,18 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <div class="section-head reveal">
         <div class="section-num"><b>03</b> / projects</div>
         <div>
-          <h2>Some public projects</h2>
-          <p class="section-sub">Build systems, web frameworks, standards tracking and embedded tools.</p>
+          <h2>Completed projects</h2>
+          <p class="section-sub">ERP websites, system optimization and solutions built for specific problems.</p>
         </div>
       </div>
       <div class="section-body">
-        <ul class="ledger reveal">
-          <li class="ledger-head"><div><span>Name</span><span>Status</span><span>Stack</span><span></span></div></li>
-          ${projects.map(row).join("\n          ")}
-        </ul>
-        <h3 class="subhead reveal">Also on GitHub</h3>
-        <div class="cards">
-          ${more.map(card).join("\n          ")}
-        </div>
-        <a class="more reveal" href="${GH}?tab=repositories" target="_blank" rel="noopener">${icon.github}See all repositories on GitHub${icon.arrow}</a>
+        ${projects.length ? `<div class="cards">
+          ${projects.map(card).join("\n          ")}
+        </div>` : `<div class="updating reveal">
+          <p><b>This list is being updated.</b> Many completed projects are not published here yet — ask me about work similar to what you need.</p>
+          <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
+        </div>`}
+        <a class="more reveal" href="${GH}?tab=repositories" target="_blank" rel="noopener">${icon.github}Open-source work on GitHub${icon.arrow}</a>
       </div>
     </div>
   </section>
