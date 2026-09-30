@@ -58,9 +58,9 @@ const timeline = [
 ]
 
 const skills = [
-    ["Languages", ["JavaScript / Node.js", "Python", "C / C++", "PHP", "SQL (MySQL, MS SQL Server)", "HTML5 / CSS3", "Assembly (MASM)"]],
+    ["Languages", ["JavaScript / Node.js", "Python", "C / C++", "Kotlin", "PHP", "SQL (MySQL, MS SQL Server)", "HTML5 / CSS3", "Assembly (MASM)"]],
     ["ERP & frameworks", ["Odoo 16 / 17", "Django", "ReactJS", "ExpressJS", "Socket.IO", "Symfony", "ArcGIS"]],
-    ["Embedded & IoT", ["Android OS customization", "Embedded Linux", "Android apps", "Control systems", "ESP32 / Embedded C", "Ubuntu administration"]],
+    ["Embedded & IoT", ["Android OS customization", "Embedded Linux", "Android apps (Kotlin, C)", "Control systems", "ESP32 / Embedded C", "Ubuntu administration"]],
     ["DevOps", ["Docker", "AWS", "GitHub CI/CD", "CircleCI"]],
     ["Design", ["Figma", "Illustrator", "Photoshop"]],
 ]

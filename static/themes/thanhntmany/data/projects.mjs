@@ -16,7 +16,7 @@ export default [
         type: "IoT engineer",
         status: "ongoing",
         summary: "End-to-end IoT systems, mainly customizing Android and embedded Linux operating systems for the devices, plus the control system, Android apps and the C firmware core of ESP32 nodes.",
-        stack: ["Android OS", "Embedded Linux", "Android apps", "Control systems", "C", "ESP32"],
+        stack: ["Android OS", "Embedded Linux", "Kotlin", "C", "Control systems", "ESP32"],
     },
     {
         name: "Tailored LMS platform",
