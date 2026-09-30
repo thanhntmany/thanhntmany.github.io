@@ -47,14 +47,14 @@ const card = p => {
 
 // Career path from the CV, without employer names.
 const timeline = [
-    ["Now", "ERP Fullstack Dev & IoT Engineer", "Mainly customizing Android and embedded Linux operating systems; also building control systems, Android apps and the C core of ESP32 IoT devices."],
-    ["2024 – now", "Project manager · Team lead", "Raised a specialized team to build a tailored LMS for a Korean customer on Odoo 17 and ExpressJS, with an architecture designed for load and growth."],
-    ["2023 – 2024", "Team lead · Freelance team", "Business management solutions for SME customers, including Odoo 16 integrated with ArcGIS for water supply and drainage systems."],
-    ["2021 – 2023", "Signals officer · Military service", "Wireless communication operations; maintained computer systems and information infrastructure with Microsoft SQL Server."],
-    ["2019 – 2021", "ERP · Fullstack developer", "Built microservices from scratch, designed automated document processing tools, trained and mentored newcomers."],
-    ["2018 – 2019", "Odoo ERP technical consultant", "Developed and maintained Accounting, Warehouse, CRM and Sales modules."],
-    ["2017 – 2019", "Bachelor", "University of Economics Ho Chi Minh City."],
-    ["2008", "First lines of code", "Started with Assembly (MASM32) and C for deep software analysis and RCA."],
+    ["Now", "ERP Fullstack Dev & IoT Engineer", "Customizing Android and embedded Linux operating systems for devices, and building the control systems, Android apps and ESP32 firmware around them."],
+    ["2024 – now", "Project Manager · Team Lead", "Built a dedicated team to deliver a tailored LMS for a Korean client on Odoo 17 and ExpressJS, with an architecture designed to scale."],
+    ["2023 – 2024", "Team Lead · Freelance team", "Delivered business management solutions for SMEs, including water supply and drainage management built on Odoo 16 and ArcGIS."],
+    ["2021 – 2023", "Signals Officer · Military service", "Ran wireless communication operations and maintained computer systems and data infrastructure on Microsoft SQL Server."],
+    ["2019 – 2021", "ERP · Fullstack Developer", "Built microservices from scratch, created automated document-processing tools, and trained and mentored new team members."],
+    ["2018 – 2019", "Odoo ERP Technical Consultant", "Developed and maintained Accounting, Warehouse, CRM and Sales modules."],
+    ["2017 – 2019", "Bachelor's degree", "University of Economics Ho Chi Minh City."],
+    ["2008", "First lines of code", "Started with Assembly (MASM32) and C, analysing software in depth and tracing problems to their root cause."],
 ]
 
 const skills = [
@@ -62,11 +62,11 @@ const skills = [
     ["ERP & frameworks", ["Odoo 16 / 17", "Django", "ReactJS", "ExpressJS", "Socket.IO", "Symfony", "ArcGIS"]],
     ["Embedded & IoT", ["Android OS customization", "Embedded Linux", "Android apps (Kotlin, C)", "Control systems", "ESP32 / Embedded C", "Ubuntu administration"]],
     ["DevOps", ["Docker", "AWS", "GitHub CI/CD", "CircleCI"]],
-    ["Design", ["Figma", "Illustrator", "Photoshop"]],
+    ["UI design", ["Figma", "Illustrator", "Photoshop"]],
 ]
 
 // Applied before first paint so the saved theme never flashes.
-page.HTMLrequire(`<meta name="description" content="Need a solution for your business, issue, task, project or assignment? Free IT solution consulting and programming training by Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer: Odoo ERP, web systems, microservices, embedded Android/Linux and IoT.">`)
+page.HTMLrequire(`<meta name="description" content="Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer in Vietnam. Free consulting on ERP (Odoo), web systems, microservices, embedded Android/Linux and IoT, plus free programming mentoring.">`)
 page.HTMLrequire(`<meta name="theme-color" content="#f6f3ec">`)
 page.HTMLrequire(`<link rel="icon" href="/favicon.ico">`)
 page.HTMLrequire(`<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
@@ -95,9 +95,9 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
   <section class="hero" id="top">
     <div class="wrap">
       <div>
-        <span class="eyebrow"><span class="dot"></span>Free IT consulting · Free programming training</span>
-        <h1>Might I <span class="accent">help you</span>?</h1>
-        <p class="lede">Just inform me by any way if you need a solution for your <b>business</b>, <b>issue</b>, <b>task</b>, <b>project</b> or <b>assignment</b>. I'm <b>Nguyễn Thuận Thành</b> — ERP Fullstack Dev &amp; IoT Engineer in Vietnam, building ERP systems, web platforms and embedded Android/Linux IoT systems.</p>
+        <span class="eyebrow"><span class="dot"></span>Free IT consulting · Free programming mentoring</span>
+        <h1>How can I <span class="accent">help you</span>?</h1>
+        <p class="lede">Need a solution for your <b>business</b>, <b>project</b>, <b>issue</b> or <b>assignment</b>? Tell me about it through any channel here. I'm <b>Nguyễn Thuận Thành</b>, an ERP Fullstack Dev &amp; IoT Engineer in Vietnam — I build ERP systems, web platforms and embedded Android/Linux IoT systems.</p>
         <div class="actions">
           <a class="btn btn-primary" href="mailto:${EMAIL}">${icon.mail}Email me</a>
           <a class="btn" href="tel:${TEL}">${icon.phone}${PHONE}</a>
@@ -107,12 +107,12 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <aside class="reach" id="contact-card" aria-label="Contact">
         <div class="reach-head">
           <span class="brand-mark">TN</span>
-          <div><b>Thanh Nguyen Thuan</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
+          <div><b>Nguyễn Thuận Thành</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
         </div>
         <ul class="channels">
           ${channels.map(channel).join("\n          ")}
         </ul>
-        <p class="reach-note">${icon.clock}<span>I check my mail and message inbox every day after <b>20:30 (GMT+7)</b>.</span></p>
+        <p class="reach-note">${icon.clock}<span>I go through emails and messages every day after <b>20:30 (GMT+7)</b>.</span></p>
       </aside>
     </div>
   </section>
@@ -122,49 +122,48 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <div class="section-head reveal">
         <div class="section-num"><b>01</b> / services</div>
         <div>
-          <h2>How I can help — for free</h2>
-          <p class="section-sub">Everything you need is a specific solution. Don't be shy!</p>
+          <h2>Two ways I can help — both free</h2>
+          <p class="section-sub">Bring me a specific problem and we'll work out a specific solution. Don't be shy!</p>
         </div>
       </div>
       <div class="section-body">
         <div class="services">
           <div class="service reveal">
             <span class="service-num">A</span>
-            <h3>IT Solution Consultant <span class="status live">free</span></h3>
-            <p>Just inform me by any way if you need a solution for your business, issue, task, project or assignment.</p>
+            <h3>IT solution consulting <span class="status live">free</span></h3>
+            <p>Whether it's your business, a project, a technical issue or an assignment, tell me what you need and I'll help you find the right solution. Areas I work in:</p>
             <ul class="chips" aria-label="Areas">${["ERP on Odoo", "Web systems & microservices", "LMS", "GIS integration", "Embedded Android & Linux", "IoT & control systems"].map(a => `<li>${a}</li>`).join("")}</ul>
-            <p class="service-ask">Might I help you?</p>
             <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Solution%20consulting">${icon.mail}Describe your problem</a>
           </div>
           <div class="service reveal">
             <span class="service-num">B</span>
-            <h3>Programming training / supporter <span class="status live">free</span></h3>
-            <p>For my teammates, my friends and the curious ones. Every day after 20:30 (GMT+7) I check the mail and message inbox and start training classes. Feel free to inbox me.</p>
+            <h3>Programming mentoring <span class="status live">free</span></h3>
+            <p>For teammates, friends and anyone curious to learn. Every evening after 20:30 (GMT+7) I go through my inbox and run training sessions. Send me a message in any of these languages:</p>
             <ul class="langs" aria-label="Languages I can reply in">${langs.map(l => `<li>${l}</li>`).join("")}</ul>
-            <p class="service-fine">Or try using any translator.</p>
-            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}Message me</a>
+            <p class="service-fine">…or any other language through a translator.</p>
+            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}Message me on Facebook</a>
           </div>
         </div>
 
         <div class="focus reveal">
-          <h3>Pls. focus on the problem</h3>
+          <h3>Get straight to the problem</h3>
           <div class="chats">
             <div class="chat chat-do">
               <p class="chat-label">✅ Do</p>
-              <p class="msg you">Hi. I'm confused about … and the problem is …</p>
+              <p class="msg you">Hi! I'm stuck on … — here's the problem: …</p>
               <p class="wait">waiting…</p>
-              <p class="msg me">I reply</p>
+              <p class="msg me">Here's how to solve it …</p>
             </div>
             <div class="chat chat-dont">
               <p class="chat-label">❌ Don't</p>
               <p class="msg you">Hi.</p>
               <p class="wait">waiting…</p>
-              <p class="msg me">I greet back</p>
+              <p class="msg me">Hi! How can I help?</p>
               <p class="wait">waiting…</p>
-              <p class="msg you">The problem is that …</p>
+              <p class="msg you">So, the problem is …</p>
               <p class="wait">waiting…</p>
-              <p class="msg me">I reply</p>
-              <p class="wait">waiting… waiting… waiting…</p>
+              <p class="msg me">Here's how to solve it …</p>
+              <p class="wait">…a whole evening later</p>
             </div>
           </div>
         </div>
@@ -178,7 +177,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
         <div class="section-num"><b>02</b> / about</div>
         <div>
           <h2>Technology that improves business and life</h2>
-          <p class="section-sub">Early exposure to assembly (MASM) at 10 years old gave me a foundation-and-optimization mindset. Since 2018 I have built ERP systems and microservices, led teams and built whole systems from scratch — now across ERP and IoT, on the way to becoming a solution architect.</p>
+          <p class="section-sub">I started with assembly (MASM) at the age of 10, which taught me to understand systems from the ground up and to optimize them. Since 2018 I have built ERP systems and microservices, led teams and delivered whole systems from scratch. Today I work across ERP and IoT, with the goal of becoming a solution architect.</p>
         </div>
       </div>
       <div class="section-body">
@@ -200,7 +199,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
         <div class="section-num"><b>03</b> / projects</div>
         <div>
           <h2>Projects</h2>
-          <p class="section-sub">ERP platforms, web systems, microservices and IoT — built for specific problems. Client names are kept private.</p>
+          <p class="section-sub">ERP platforms, web systems, microservices and IoT, each built around a specific problem. Client names are kept confidential.</p>
         </div>
       </div>
       <div class="section-body">
@@ -208,10 +207,10 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
           ${projects.map(card).join("\n          ")}
         </div>
         <div class="updating reveal">
-          <p><b>More projects are being added.</b> Ask me about work similar to what you need.</p>
+          <p><b>More projects are on the way.</b> Ask me about work similar to what you need.</p>
           <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
         </div>` : `<div class="updating reveal">
-          <p><b>This list is being updated.</b> Many completed projects are not published here yet — ask me about work similar to what you need.</p>
+          <p><b>This list is being updated.</b> Many completed projects aren't listed yet — ask me about work similar to what you need.</p>
           <a class="btn btn-primary" href="mailto:${EMAIL}?subject=Your%20projects">${icon.mail}Ask about my projects</a>
         </div>`}
         <a class="more reveal" href="${GH}?tab=repositories" target="_blank" rel="noopener">${icon.github}Open-source work on GitHub${icon.arrow}</a>
@@ -225,7 +224,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
         <div class="section-num"><b>04</b> / notebook</div>
         <div>
           <h2>Notebook</h2>
-          <p class="section-sub">Notes I write while learning — fundamentals, summaries of specifications and references I keep coming back to.</p>
+          <p class="section-sub">Notes I keep while learning: fundamentals, specification summaries and references I come back to.</p>
         </div>
       </div>
       <div class="section-body">
@@ -258,7 +257,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <p class="contact-kicker">05 / contact — just inform me by any way</p>
+    <p class="contact-kicker">05 / contact — reach me any way you like</p>
     <a class="contact-mail" href="mailto:${EMAIL}">${EMAIL}</a>
     <div class="contact-row">
       <button class="btn" type="button" data-copy="${EMAIL}" do-active="${__dirname + "/cpn/copy.mjs"}">${icon.copy}Copy email</button>
@@ -267,7 +266,7 @@ $.body = new StringAr(`<a class="skip" href="#main">Skip to content</a>
       <a class="btn" href="${X}" target="_blank" rel="noopener">${icon.x}@Thanhnt_many</a>
       <a class="btn" href="${GH}" target="_blank" rel="noopener">${icon.github}GitHub</a>
     </div>
-    <p class="contact-note">${icon.clock}Inbox checked every day after 20:30 (GMT+7). Please focus on the problem in your first message.</p>
+    <p class="contact-note">${icon.clock}I go through emails and messages every day after 20:30 (GMT+7). Put the problem in your first message and I can help faster.</p>
     <div class="footer">
       <span>© Nguyễn Thuận Thành · Vietnam</span>
       <span>Built with <a href="${GH}/phloemjs" target="_blank" rel="noopener">phloemjs</a> · hosted on GitHub Pages</span>
