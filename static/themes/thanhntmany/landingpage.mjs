@@ -51,6 +51,10 @@ export function render(lang) {
     }
     const ask = subject => `<a class="btn btn-primary" href="mailto:${EMAIL}?subject=${encodeURIComponent(subject)}">${icon.mail}${T.projects.btn}</a>`
     const S = T.services, F = S.focus
+    // A chat bubble from the visitor ("you") or from me, labelled so replies are clearly mine.
+    const msg = (who, text) => who === "me"
+        ? `<div class="msg-row me"><span class="avatar" aria-hidden="true">TN</span><div><small class="who">${F.me}</small><p class="msg me">${text}</p></div></div>`
+        : `<div class="msg-row you"><div><small class="who">${F.you}</small><p class="msg you">${text}</p></div></div>`
 
     $.lang = lang
     // Applied before first paint so the saved theme never flashes.
@@ -140,19 +144,19 @@ export function render(lang) {
           <div class="chats">
             <div class="chat chat-do">
               <p class="chat-label">${F.do}</p>
-              <p class="msg you">${F.doAsk}</p>
+              ${msg("you", F.doAsk)}
               <p class="wait">${F.wait}</p>
-              <p class="msg me">${F.answer}</p>
+              ${msg("me", F.answer)}
             </div>
             <div class="chat chat-dont">
               <p class="chat-label">${F.dont}</p>
-              <p class="msg you">${F.hi}</p>
+              ${msg("you", F.hi)}
               <p class="wait">${F.wait}</p>
-              <p class="msg me">${F.hiBack}</p>
+              ${msg("me", F.hiBack)}
               <p class="wait">${F.wait}</p>
-              <p class="msg you">${F.late}</p>
+              ${msg("you", F.late)}
               <p class="wait">${F.wait}</p>
-              <p class="msg me">${F.answer}</p>
+              ${msg("me", F.answer)}
               <p class="wait">${F.evening}</p>
             </div>
           </div>
