@@ -749,12 +749,6 @@ p {
   color: var(--ink-2);
 }
 
-.service .service-ask {
-  color: var(--ink);
-  font-size: 18px;
-  font-weight: 650;
-}
-
 .service .service-fine {
   margin-top: -4px;
   color: var(--ink-3);
