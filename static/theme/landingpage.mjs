@@ -83,6 +83,35 @@ export function render(lang) {
         ? `<div class="msg-row me"><span class="avatar">${logo}</span><div><small class="who">${t(whoKey, whoText)}</small><p class="msg me">${t(key, text)}</p></div></div>`
         : `<div class="msg-row you"><div><small class="who">${t(whoKey, whoText)}</small><p class="msg you">${t(key, text)}</p></div></div>`
 
+    // The two "ways I can help" offer cards — now shown in the hero's right column.
+    const serviceCards = `<div class="service reveal">
+            <span class="service-num">A</span>
+            <h3>${t("services.consulting.h3", S.consulting.h3)} <span class="status live">${t("common.free", T.free)}</span></h3>
+            <p>${t("services.consulting.p", S.consulting.p)}</p>
+            <ul class="chips" aria-label="${S.consulting.areasLabel}" ${ta([["aria-label", "services.consulting.areasLabel", S.consulting.areasLabel]])}>${S.consulting.areas.map((a, i) => `<li>${t(`services.consulting.areas.${i}`, a)}</li>`).join("")}</ul>
+            <a class="btn btn-primary" href="mailto:${EMAIL}?subject=${encodeURIComponent(S.consulting.subject)}">${icon.mail}${t("services.consulting.btn", S.consulting.btn)}</a>
+          </div>
+          <div class="service reveal">
+            <span class="service-num">B</span>
+            <h3>${t("services.mentoring.h3", S.mentoring.h3)} <span class="status live">${t("common.free", T.free)}</span></h3>
+            <p>${t("services.mentoring.p", S.mentoring.p)}</p>
+            <ul class="langs" aria-label="${S.mentoring.langsLabel}" ${ta([["aria-label", "services.mentoring.langsLabel", S.mentoring.langsLabel]])}>${langs.map(l => `<li>${l}</li>`).join("")}</ul>
+            <p class="service-fine">${t("services.mentoring.fine", S.mentoring.fine)}</p>
+            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}${t("services.mentoring.btn", S.mentoring.btn)}</a>
+          </div>`
+
+    // The contact "reach" card — now lives in the Services section, beside the focus card.
+    const contactCard = `<aside class="reach reveal" id="contact-card" aria-label="${T.hero.contact}" ${ta([["aria-label", "hero.contact", T.hero.contact]])}>
+            <div class="reach-head">
+              <span class="brand-mark">${logo}</span>
+              <div><b>Nguyễn Thuận Thành</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
+            </div>
+            <ul class="channels">
+              ${channels.map(channel).join("\n              ")}
+            </ul>
+            <p class="reach-note">${icon.clock}<span>${t("hero.note", T.hero.note, true)}</span></p>
+          </aside>`
+
     $.lang = lang
     // Applied before first paint so the saved theme never flashes.
     page.HTMLrequire(`<meta name="description" content="${T.description}">`)
@@ -134,16 +163,9 @@ export function render(lang) {
         <p class="hero-hint">${t("hero.hint3d", T.hero.hint3d)}</p>
       </div>
 
-      <aside class="reach" id="contact-card" aria-label="${T.hero.contact}" ${ta([["aria-label", "hero.contact", T.hero.contact]])}>
-        <div class="reach-head">
-          <span class="brand-mark">${logo}</span>
-          <div><b>Nguyễn Thuận Thành</b><small>ERP Fullstack Dev &amp; IoT Engineer</small></div>
-        </div>
-        <ul class="channels">
-          ${channels.map(channel).join("\n          ")}
-        </ul>
-        <p class="reach-note">${icon.clock}<span>${t("hero.note", T.hero.note, true)}</span></p>
-      </aside>
+      <div class="hero-aside">
+          ${serviceCards}
+      </div>
     </div>
   </section>
 
@@ -157,25 +179,10 @@ export function render(lang) {
         </div>
       </div>
       <div class="section-body">
-        <div class="services">
-          <div class="service reveal">
-            <span class="service-num">A</span>
-            <h3>${t("services.consulting.h3", S.consulting.h3)} <span class="status live">${t("common.free", T.free)}</span></h3>
-            <p>${t("services.consulting.p", S.consulting.p)}</p>
-            <ul class="chips" aria-label="${S.consulting.areasLabel}" ${ta([["aria-label", "services.consulting.areasLabel", S.consulting.areasLabel]])}>${S.consulting.areas.map((a, i) => `<li>${t(`services.consulting.areas.${i}`, a)}</li>`).join("")}</ul>
-            <a class="btn btn-primary" href="mailto:${EMAIL}?subject=${encodeURIComponent(S.consulting.subject)}">${icon.mail}${t("services.consulting.btn", S.consulting.btn)}</a>
-          </div>
-          <div class="service reveal">
-            <span class="service-num">B</span>
-            <h3>${t("services.mentoring.h3", S.mentoring.h3)} <span class="status live">${t("common.free", T.free)}</span></h3>
-            <p>${t("services.mentoring.p", S.mentoring.p)}</p>
-            <ul class="langs" aria-label="${S.mentoring.langsLabel}" ${ta([["aria-label", "services.mentoring.langsLabel", S.mentoring.langsLabel]])}>${langs.map(l => `<li>${l}</li>`).join("")}</ul>
-            <p class="service-fine">${t("services.mentoring.fine", S.mentoring.fine)}</p>
-            <a class="btn" href="${FB}" target="_blank" rel="noopener">${icon.facebook}${t("services.mentoring.btn", S.mentoring.btn)}</a>
-          </div>
-        </div>
+        <div class="service-row">
+          ${contactCard}
 
-        <div class="focus reveal">
+          <div class="focus reveal">
           <h3>${t("services.focus.h3", F.h3)}</h3>
           <div class="chats">
             <div class="chat chat-do">
@@ -195,6 +202,7 @@ export function render(lang) {
               ${msg("me", "services.focus.me", F.me, "services.focus.answer", F.answer)}
               <p class="wait">${t("services.focus.evening", F.evening)}</p>
             </div>
+          </div>
           </div>
         </div>
       </div>
