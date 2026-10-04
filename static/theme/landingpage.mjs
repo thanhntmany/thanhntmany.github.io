@@ -117,7 +117,7 @@ export function render(lang) {
     page.HTMLrequire(`<meta name="description" content="${T.description}">`)
     page.HTMLrequire(`<meta name="theme-color" content="#f7f8fa">`)
     page.HTMLrequire(`<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="${__dirname}/static/logo.svg"><link rel="apple-touch-icon" href="${__dirname}/static/apple-touch-icon.png">`)
-    page.HTMLrequire(`<link rel="canonical" href="${SITE + T.path}"><link rel="alternate" hreflang="en" href="${SITE}/"><link rel="alternate" hreflang="vi" href="${SITE}/vi/"><link rel="alternate" hreflang="x-default" href="${SITE}/">`)
+    page.HTMLrequire(`<link rel="canonical" href="${SITE + T.path}">`)
     page.HTMLrequire(`<script>document.documentElement.lang="${lang}";try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>`)
     page.HTMLrequire(`<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`)
     page.HTMLrequire(buildTag.css("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"))
@@ -142,7 +142,7 @@ export function render(lang) {
       <a href="#lab">${t("nav.lab", T.nav.lab)}</a>
     </nav>
     <a class="btn btn-primary btn-sm" href="#contact">${icon.mail}<span>${t("common.cta", T.cta)}</span></a>
-    <a class="icon-btn lang-switch" href="${other.path}" hreflang="${other.lang}" lang="${other.lang}" aria-label="${T.switchLabel}" title="${T.switchLabel}" do-active="${__dirname + "/cpn/i18n.mjs"}">${other.lang.toUpperCase()}</a>
+    <a class="icon-btn lang-switch" href="${other.path}" lang="${other.lang}" aria-label="${T.switchLabel}" title="${T.switchLabel}" do-active="${__dirname + "/cpn/i18n.mjs"}">${other.lang.toUpperCase()}</a>
     <button class="icon-btn theme-toggle" type="button" aria-label="${T.themeToggle}" ${ta([["aria-label", "common.themeToggle", T.themeToggle]])} do-active="${__dirname + "/cpn/theme-toggle.mjs"}">${icon.moon}${icon.sun}</button>
   </div>
 </header>

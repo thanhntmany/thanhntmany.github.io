@@ -1,14 +1,14 @@
 /*
  * i18n — a compact runtime translator.
  *
- * Both pages are pre-rendered (good SEO + no flash of keys), and every translatable
- * node carries a data-i18n key. This library swaps the text in place on a language
- * switch, without a reload:
+ * The page is pre-rendered in English (good SEO + no flash of keys), and every
+ * translatable node carries a data-i18n key. This library swaps the text in place on a
+ * language switch, without a reload:
  *   [data-i18n]       → textContent
  *   [data-i18n-html]  → innerHTML
  *   [data-i18n-attr]  → attributes, from "attr:key;attr2:key2"
  * The choice is remembered in localStorage and re-applied on later visits. If a fetch
- * fails, we fall back to navigating to the other pre-rendered page — the site never breaks.
+ * fails, we fall back to reloading the page — the site never breaks.
  *
  * CATALOGUE LAYOUT — modelled on smart-tool-box/assets/i18n (see tools/gen-i18n.mjs):
  *
@@ -30,7 +30,8 @@ const BASE = "/static/theme/i18n/"
 const BASELINE = "en-US"
 const META = {
     en: { path: "/", code: "EN", dir: "en-US" },
-    vi: { path: "/vi/", code: "VI", dir: "vi-VN" },
+    // Only English is pre-rendered; Vietnamese is applied in place at the root.
+    vi: { path: "/", code: "VI", dir: "vi-VN" },
 }
 
 let FILES = null            // the manifest (array of stems), once loaded
@@ -151,7 +152,6 @@ function refreshSwitch(a, lang, dict) {
     const other = lang === "vi" ? "en" : "vi"
     a.textContent = META[other].code
     a.setAttribute("href", META[other].path)
-    a.setAttribute("hreflang", other)
     a.setAttribute("lang", other)
     const label = dict["common.switchLabel"]
     if (label) {
@@ -180,7 +180,7 @@ export function activeDom(a) {
         const next = document.documentElement.lang === "vi" ? "en" : "vi"
         setLang(next, a).catch(err => {
             console.error(err)
-            location.href = a.getAttribute("href")   // graceful fallback: the SSR page
+            location.reload()   // graceful fallback: back to the pre-rendered English page
         })
     })
 

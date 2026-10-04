@@ -1,7 +1,9 @@
 // Vietnamese strings for the landing page. Keep keys in sync with en.mjs.
 export default {
     lang: "vi",
-    path: "/vi/",
+    // No separate Vietnamese page any more: VI is a runtime, in-place text swap
+    // served from the i18n catalogue, so it lives at the root alongside English.
+    path: "/",
     switchLabel: "English",
     title: "Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer",
     description: "Tôi là Nguyễn Thuận Thành, ERP Fullstack Dev & IoT Engineer ở Việt Nam. Cần tư vấn về ERP (Odoo), hệ thống web, Android/Linux nhúng, IoT hay muốn học lập trình? Cứ nhắn tôi, hoàn toàn miễn phí.",
