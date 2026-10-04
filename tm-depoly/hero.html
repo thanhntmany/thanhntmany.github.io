@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TM-Depoly — live 3D hero</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #view {
+    display: block; width: 100%; height: 100%;
+    cursor: grab; touch-action: none; background: #000;
+  }
+  #view:active { cursor: grabbing; }
+  .badge {
+    position: fixed; right: 14px; bottom: 12px; z-index: 5;
+    font: 500 12px/1 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #9a9ba2; background: rgba(0,0,0,.42);
+    border: 1px solid #2a2a2f; border-radius: 999px; padding: 6px 12px;
+    text-decoration: none; letter-spacing: .01em; backdrop-filter: blur(4px);
+  }
+  .badge b { color: #4a86ff; font-weight: 600; }
+  .badge:hover { color: #fff; }
+</style>
+</head>
+<body>
+  <canvas id="view" aria-label="TM-Depoly live 3D scene"></canvas>
+  <a class="badge" href="https://github.com/thanhntmany" target="_blank" rel="noopener"><b>TM-Depoly</b> by Thanhnt.many</a>
+
+  <script src="tmd.js"></script>
+  <script src="tmd-gpu.js"></script>
+  <script src="tmd.lib.js"></script>
+  <script src="hero.js"></script>
+</body>
+</html>

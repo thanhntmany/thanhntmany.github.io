@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TM-Depoly — analytic 3D renderer (WASM)</title>
+<meta name="description" content="TM-Depoly (tmd) — a pure-C analytic 3D renderer by Thanhnt.many, compiled to WebAssembly. Drag to orbit, scroll to zoom, switch scenes and quality." />
+<style>
+  :root {
+    --bg: #000000; --panel: #141417; --line: #2a2a2f;
+    --fg: #ffffff; --muted: #9a9ba2; --accent: #4a86ff;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 14px/1.5 system-ui, -apple-system, "Be Vietnam Pro", Segoe UI, Roboto, sans-serif;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 16px 16px 40px;
+  }
+  .stage {
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;
+    justify-content: center; width: 100%; max-width: 940px;
+  }
+  canvas {
+    background: #000; border: 1px solid var(--line); border-radius: 10px;
+    cursor: grab; max-width: 100%; height: auto; touch-action: none; flex: 0 1 640px;
+  }
+  canvas:active { cursor: grabbing; }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; flex: 1 1 240px; min-width: 240px; max-width: 300px;
+  }
+  .panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--muted); margin: 0 0 8px; }
+  label { display: block; margin: 10px 0 4px; color: var(--muted); font-size: 12px; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  select { width: 100%; background: #0b0e13; color: var(--fg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: inherit; }
+  .row { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums;
+    color: var(--muted); font-size: 12px; }
+  .hint { color: var(--muted); font-size: 11px; margin-top: 12px; }
+  #status { color: var(--accent); font-size: 12px; min-height: 1.4em; margin-top: 10px;
+    font-variant-numeric: tabular-nums; }
+  code { background: #0b0e13; padding: 1px 5px; border-radius: 4px; color: #cbd5e1; }
+  /* The corner signature — TM-Depoly by Thanhnt.many. */
+  .badge {
+    position: fixed; right: 12px; bottom: 10px; z-index: 5;
+    font: 500 12px/1 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--muted); background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+    text-decoration: none; letter-spacing: .01em; backdrop-filter: blur(4px);
+  }
+  .badge b { color: var(--accent); font-weight: 600; }
+  .badge:hover { color: var(--fg); }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <canvas id="view" width="640" height="440" aria-label="TM-Depoly 3D viewport"></canvas>
+    <div class="panel">
+      <h2>Cảnh</h2>
+      <label for="scene">Chọn cảnh</label>
+      <select id="scene">
+        <option value="showcase">Showcase (Bézier · torus)</option>
+        <option value="primitives">Primitives (cầu · hộp · trụ)</option>
+      </select>
+
+      <h2 style="margin-top:16px">Bộ dựng ảnh</h2>
+      <label for="backend">Thiết bị</label>
+      <select id="backend">
+        <option value="auto">Tự động (GPU → CPU)</option>
+        <option value="gpu">GPU · WebGPU</option>
+        <option value="cpu">CPU · wasm</option>
+      </select>
+
+      <h2 style="margin-top:16px">Chất lượng</h2>
+      <label for="spp">Anti-aliasing: <span id="sppVal">2</span> spp</label>
+      <input id="spp" type="range" min="1" max="8" step="1" value="2" />
+      <label for="depth">Độ sâu phản xạ: <span id="depthVal">3</span></label>
+      <input id="depth" type="range" min="0" max="6" step="1" value="3" />
+      <label for="exp">Exposure: <span id="expVal">1.1</span></label>
+      <input id="exp" type="range" min="0.3" max="2.5" step="0.1" value="1.1" />
+
+      <h2 style="margin-top:16px">Camera</h2>
+      <div class="row"><span>Kéo chuột / chạm</span><span>xoay</span></div>
+      <div class="row"><span>Lăn chuột</span><span>phóng to</span></div>
+
+      <div id="status">đang tải WebAssembly…</div>
+      <p class="hint">Mặt cong Bézier &amp; torus dựng bằng cách giải phương trình bậc 4 — không mesh tam giác. Ưu tiên GPU (WebGPU), tự lùi về CPU (<code>wasm</code>).</p>
+    </div>
+  </div>
+
+  <a class="badge" href="https://github.com/thanhntmany" target="_blank" rel="noopener"><b>TM-Depoly</b> by Thanhnt.many</a>
+
+  <script src="tmd.js"></script>
+  <script src="tmd-gpu.js"></script>
+  <script src="tmd.lib.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
