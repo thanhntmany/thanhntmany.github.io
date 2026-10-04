@@ -7,12 +7,12 @@ export default {
     description: "Nguyễn Thuận Thành — ERP Fullstack Dev & IoT Engineer in Vietnam. Free consulting on ERP (Odoo), web systems, microservices, embedded Android/Linux and IoT, plus free programming mentoring.",
     skip: "Skip to content",
     home: "home",
-    nav: { services: "Services", about: "About", projects: "Projects", notebook: "Notebook", sections: "Sections" },
+    nav: { services: "Services", about: "About", projects: "Projects", notebook: "Notebook", lab: "Control room", sections: "Sections" },
     cta: "Get in touch",
     themeToggle: "Toggle dark mode",
     copied: "Copied",
     copy: "Copy",
-    num: { services: "services", about: "about", projects: "projects", notebook: "notebook", contact: "contact" },
+    num: { services: "services", about: "about", projects: "projects", notebook: "notebook", lab: "control room", contact: "contact" },
     free: "free",
 
     hero: {
@@ -22,6 +22,8 @@ export default {
         email: "Email me",
         contact: "Contact",
         note: "I go through emails and messages every day after <b>20:30 (GMT+7)</b>.",
+        hint3d: "Scroll to fly through my live 3D factory — the control room below lets you take the wheel.",
+        tech: ["ERP", "IoT", "C", "WebAssembly", "WebGPU"],
     },
     channel: { email: "Email", phone: "Phone", facebook: "Facebook", x: "X" },
 
@@ -103,8 +105,31 @@ export default {
         ],
     },
 
+    lab: {
+        h2: "Step into the factory",
+        sub: "The 3D backdrop is a live automated factory, drawn by TM-Depoly (tmd) — my pure-C analytic renderer compiled to WebAssembly. The moving blueprint stays smooth; pause and it ray-traces a crisp frame. Take the controls below.",
+        openLabel: "Open in full screen",
+        loading: "Loading live 3D…",
+    },
+
+    control: {
+        hint: "Drag to orbit · scroll to zoom. Run the line, wake the robots, or jump to a camera angle — the backdrop reacts live.",
+        lineLabel: "Machines",
+        line: "Conveyor line",
+        robotA: "Robot A",
+        robotB: "Robot B",
+        robotC: "Robot C",
+        viewLabel: "Camera",
+        vOverview: "Overview",
+        vLine: "Conveyor",
+        vArm: "Robot",
+        vTop: "Top-down",
+        reset: "Reset",
+        demo: "Open the standalone engine demo",
+    },
+
     contact: {
-        kicker: "05 / contact — reach me any way you like",
+        kicker: "06 / contact — reach me any way you like",
         copy: "Copy email",
         note: "I go through emails and messages every day after 20:30 (GMT+7). Put the problem in your first message and I can help faster.",
         country: "Vietnam",

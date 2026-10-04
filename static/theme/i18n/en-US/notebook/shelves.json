@@ -1,0 +1,15 @@
+{
+  "0.name.0": "OSI model",
+  "0.name.1": "Regular expressions",
+  "0.title": "Basics",
+  "0.topic.0": "networking",
+  "0.topic.1": "text",
+  "1.name.0": "RFC 5389 — STUN",
+  "1.name.1": "RFC map",
+  "1.title": "RFC summaries",
+  "1.topic.0": "NAT",
+  "1.topic.1": "index",
+  "2.name.0": "Open source licenses",
+  "2.title": "References",
+  "2.topic.0": "legal"
+}

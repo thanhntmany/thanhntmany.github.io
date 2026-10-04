@@ -1,0 +1,5 @@
+{
+  "h2": "Step into the factory",
+  "loading": "Loading live 3D…",
+  "sub": "The 3D backdrop is a live automated factory, drawn by TM-Depoly (tmd) — my pure-C analytic renderer compiled to WebAssembly. The moving blueprint stays smooth; pause and it ray-traces a crisp frame. Take the controls below."
+}

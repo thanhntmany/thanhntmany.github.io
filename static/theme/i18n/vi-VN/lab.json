@@ -1,0 +1,5 @@
+{
+  "h2": "Bước vào nhà xưởng",
+  "loading": "Đang dựng 3D trực tiếp…",
+  "sub": "Nền 3D phía sau là một nhà xưởng tự động chạy trực tiếp, dựng bằng TM-Depoly (tmd) — engine dựng hình giải tích viết thuần C của tôi, biên dịch sang WebAssembly. Bản vẽ chuyển động luôn mượt; dừng lại là nó ray-trace ra một khung hình nét căng. Thử điều khiển bên dưới."
+}

@@ -1,0 +1,15 @@
+{
+  "demo": "Open the standalone engine demo",
+  "hint": "Drag to orbit · scroll to zoom. Run the line, wake the robots, or jump to a camera angle — the backdrop reacts live.",
+  "line": "Conveyor line",
+  "lineLabel": "Machines",
+  "reset": "Reset",
+  "robotA": "Robot A",
+  "robotB": "Robot B",
+  "robotC": "Robot C",
+  "vArm": "Robot",
+  "vLine": "Conveyor",
+  "vOverview": "Overview",
+  "vTop": "Top-down",
+  "viewLabel": "Camera"
+}

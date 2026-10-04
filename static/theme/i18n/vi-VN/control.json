@@ -1,0 +1,15 @@
+{
+  "demo": "Mở bản demo engine riêng",
+  "hint": "Kéo để xoay · lăn chuột để phóng to. Chạy dây chuyền, đánh thức robot, hay nhảy tới một góc máy — nền phản hồi ngay tức thì.",
+  "line": "Dây chuyền",
+  "lineLabel": "Máy móc",
+  "reset": "Đặt lại",
+  "robotA": "Robot A",
+  "robotB": "Robot B",
+  "robotC": "Robot C",
+  "vArm": "Robot",
+  "vLine": "Dây chuyền",
+  "vOverview": "Toàn cảnh",
+  "vTop": "Từ trên",
+  "viewLabel": "Góc máy"
+}

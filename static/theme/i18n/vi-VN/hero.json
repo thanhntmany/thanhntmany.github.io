@@ -1,0 +1,14 @@
+{
+  "contact": "Liên hệ",
+  "email": "Gửi email cho tôi",
+  "eyebrow": "Tư vấn IT & kèm lập trình — miễn phí",
+  "h1": "Tôi có thể <span class=\"accent\">giúp gì</span> cho bạn?",
+  "hint3d": "Cuộn trang để bay xuyên nhà xưởng 3D trực tiếp — xuống phòng điều khiển bên dưới để tự tay điều khiển.",
+  "lede": "<b>Doanh nghiệp</b> cần một giải pháp, <b>dự án</b> đang gặp khó, <b>hệ thống</b> trục trặc hay <b>bài tập</b> mãi chưa ra? Cứ nhắn tôi qua kênh nào bạn tiện. Tôi là <b>Nguyễn Thuận Thành</b>, ERP Fullstack Dev &amp; IoT Engineer — hằng ngày tôi làm hệ thống ERP, nền tảng web và thiết bị IoT chạy Android/Linux nhúng.",
+  "note": "Tối nào sau <b>20:30 (GMT+7)</b> tôi cũng đọc email và tin nhắn.",
+  "tech.0": "ERP",
+  "tech.1": "IoT",
+  "tech.2": "C",
+  "tech.3": "WebAssembly",
+  "tech.4": "WebGPU"
+}

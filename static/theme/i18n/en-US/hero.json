@@ -1,0 +1,14 @@
+{
+  "contact": "Contact",
+  "email": "Email me",
+  "eyebrow": "Free IT consulting · Free programming mentoring",
+  "h1": "How can I <span class=\"accent\">help you</span>?",
+  "hint3d": "Scroll to fly through my live 3D factory — the control room below lets you take the wheel.",
+  "lede": "Need a solution for your <b>business</b>, <b>project</b>, <b>issue</b> or <b>assignment</b>? Tell me about it through any channel here. I'm <b>Nguyễn Thuận Thành</b>, an ERP Fullstack Dev &amp; IoT Engineer in Vietnam — I build ERP systems, web platforms and embedded Android/Linux IoT systems.",
+  "note": "I go through emails and messages every day after <b>20:30 (GMT+7)</b>.",
+  "tech.0": "ERP",
+  "tech.1": "IoT",
+  "tech.2": "C",
+  "tech.3": "WebAssembly",
+  "tech.4": "WebGPU"
+}

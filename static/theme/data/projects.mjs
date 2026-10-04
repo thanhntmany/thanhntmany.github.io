@@ -13,6 +13,18 @@
 // },
 export default [
     {
+        name: "TM-Depoly (tmd)",
+        year: { en: "2025 – now", vi: "2025 – nay" },
+        type: { en: "Personal R&D · 3D engine", vi: "Nghiên cứu cá nhân · Engine 3D" },
+        status: "ongoing",
+        summary: {
+            en: "A pure-C, dependency-free analytic 3D renderer: it draws curved surfaces (Bézier patches, torus) by solving degree-4 equations instead of triangle meshes, with PBR shading, a scene graph and a text scene format. It compiles to WebAssembly with a WebGPU/CPU compute layer — and runs live right on this page.",
+            vi: "Engine dựng hình 3D giải tích viết thuần C, không phụ thuộc thư viện: dựng mặt cong (Bézier, torus) bằng cách giải phương trình bậc 4 thay vì mesh tam giác, có PBR, scene graph và định dạng cảnh dạng văn bản. Biên dịch sang WebAssembly với lớp tính toán WebGPU/CPU — và chạy trực tiếp ngay trên trang này.",
+        },
+        stack: ["C11", "WebAssembly", "WebGPU", "Emscripten", "PBR", "Ray tracing"],
+        link: "/tm-depoly/",
+    },
+    {
         name: { en: "Embedded Android & Linux IoT systems", vi: "Hệ thống IoT trên Android & Linux nhúng" },
         type: "IoT Engineer",
         status: "ongoing",
@@ -28,7 +40,7 @@ export default [
         type: "Project Manager · Team Lead",
         summary: {
             en: "A learning management system for a Korean client, delivered by a dedicated team on an architecture designed for higher load and new services. Custom Odoo 17 modules, widgets and integrations cover courses, college transcripts, payroll and payments, with ExpressJS APIs for customer support and static assets.",
-            vi: "Hệ thống quản lý học tập cho một khách hàng Hàn Quốc, do đội mình tự lập và phát triển, kiến trúc được thiết kế để chịu tải cao và dễ thêm dịch vụ mới. Module, widget và tích hợp Odoo 17 làm riêng cho khoá học, bảng điểm, tính lương và thanh toán; API ExpressJS phục vụ chăm sóc khách hàng và tài nguyên tĩnh.",
+            vi: "Hệ thống quản lý học tập cho một khách hàng Hàn Quốc, do đội tôi tự lập và phát triển, kiến trúc được thiết kế để chịu tải cao và dễ thêm dịch vụ mới. Module, widget và tích hợp Odoo 17 làm riêng cho khoá học, bảng điểm, tính lương và thanh toán; API ExpressJS phục vụ chăm sóc khách hàng và tài nguyên tĩnh.",
         },
         stack: ["Odoo 17", "Python", "ExpressJS", "System architecture"],
     },
